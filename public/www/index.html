@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <base href="/">
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
@@ -28,24 +29,15 @@
     <script src="js/services/habits.js" type="text/javascript"></script>
     <script src="js/services/auth.js" type="text/javascript"></script>
     <script src="js/services/user.js" type="text/javascript"></script>
-    <base href="/">
   </head>
   <body ng-app="happit">
     <ion-pane>
-      <ion-header-bar class="bar-stable">
+      <ion-header-bar class="bar-stable navbar">
         <h1 class="title">Happit</h1>
-        <i class='icon ion-gear-a' ng-click=""></i>
+        <a href="/settings"><i class='icon ion-gear-a settings-icon'></i></a>
       </ion-header-bar>
       <ion-content>
         <div ui-view></div>
-
-
-        <div>
-          <a href="/auth/twitter"><button class="button button-positive" type="button">Twitter</button></a>
-          <a href="/auth/facebook"><button class="button button-positive" type="button">Facebook</button></a>
-          <a href="/auth/google"><button class="button button-positive" type="button">Google</button></a>
-        </div>
-
       </ion-content>
     </ion-pane>
   </body>
