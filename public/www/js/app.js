@@ -6,9 +6,9 @@
 
 (function() {
   angular
-    .module('happit', ['ionic', 'ui.router', 'ngCordova', 'ngCordovaOauth', 'ionic-timepicker', 'chartjs'])
-    .config(routeHandler)
-    .run(runBlock)
+    .module('happit', ['ionic', 'ui.router', 'ionic-timepicker', 'chartjs'])
+    .config(routeHandler, ionicTimePickerProvider)
+    .run(runBlock);
 
     routeHandler.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider']
     runBlock.$inject = ['$ionicPlatform'];
@@ -47,7 +47,7 @@
           templateUrl: 'partials/edit.html',
           controller: 'HabitCtrl as ctrl'
         })
-      // $locationProvider.html5Mode(true);
+      $locationProvider.html5Mode(true);
     }
 
     function runBlock($ionicPlatform) {

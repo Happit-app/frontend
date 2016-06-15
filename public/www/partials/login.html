@@ -2,13 +2,13 @@
   Happit Logo Here
   <div class="oauth-container">
     <div>
-      <button class="button oauth-button oauth-twitter" type="button"><i class="fa fa-facebook" aria-hidden="true"></i>Login with Twitter</button>
+      <a href="/auth/twitter"><button class="button oauth-button oauth-twitter" type="button"><i class="icon ion-social-twitter" aria-hidden="true"></i>Login with Twitter</button></a>
     </div>
     <div>
-      <button ng-click='ctrl.fbLogin()' class="button oauth-button oauth-facebook" type="button"><i class="fa fa-twitter" aria-hidden="true"></i>Login with Facebook</button>
+      <a href="/auth/facebook"><button class="button oauth-button oauth-facebook" type="button"><i class="icon ion-social-facebook" aria-hidden="true"></i>Login with Facebook</button></a>
     </div>
     <div>
-      <button ng-click='ctrl.googleLogin()' class="button oauth-button oauth-google" type="button"><i class="fa fa-google" aria-hidden="true"></i>Login with Google</button>
+      <a href="/auth/google"><button class="button oauth-button oauth-google" type="button"><i class="icon ion-social-google" aria-hidden="true"></i>Login with Google</button></a>
     </div>
   </div>
 </ion-content>
