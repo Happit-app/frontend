@@ -6,6 +6,7 @@ HabitCtrl.$inject = ['HabitsServices', 'ionicTimePicker'];
 
 function HabitCtrl(HabitsServices, ionicTimePicker) {
   var ctrl = this;
+  this.time;
 
   this.service = HabitsServices;
 
@@ -18,13 +19,21 @@ function HabitCtrl(HabitsServices, ionicTimePicker) {
   }
 
   this.openTimePicker = function() {
+    var min;
       var ipObj1 = {
         callback: function (val) {
           if (typeof (val) === 'undefined') {
             console.log('Time not selected');
           } else {
             var selectedTime = new Date(val * 1000);
-            console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), 'H :', selectedTime.getUTCMinutes(), 'M');
+            var hour = selectedTime.getUTCHours();
+
+            if(selectedTime.getUTCMinutes() === 0) {
+               min = "00";
+            } else {
+               min = selectedTime.getUTCMinutes()
+            }
+            ctrl.time = hour + ":" + min;
           }
         },
         inputTime: 50400,
