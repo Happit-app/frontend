@@ -29,4 +29,12 @@ function HabitsCtrl() {
       completed: true
     }
   ];
+
+  this.completeTask = function(id) {
+    this.service.completeTask(id);
+  };
+
+  this.incompleteTask = function(id) {
+    this.service.incompleteTask(id);
+  };
 }
