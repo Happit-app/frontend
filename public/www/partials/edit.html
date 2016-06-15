@@ -14,7 +14,7 @@
     </label>
     <div class='notify'>
       <ion-toggle ng-model='notify' ng-checked='habit.notify' toggle-class='toggle-calm'>Notifications</ion-toggle>
-      <button class='button' ng-click='ctrl.openTimePicker()'>Set Notification Time</button>
+      <button class='button' ng-click='ctrl.openTimePicker()'>  Notification Time:   {{ ctrl.time || "set time here" }}</button>
     </div>
     <ul class="list">
       <li class="item item-toggle">
