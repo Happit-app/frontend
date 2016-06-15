@@ -8,15 +8,14 @@ function AuthCtrl($cordovaOauth) {
 
   var ctrl = this;
   var google_id = '';
-  var url_short = '';
-  var google_auth = ``;
-  var user = '';
-  var user2 = '';
+  var url_short = 'https://www.googleapis.com/auth/urlshortener';
+  var google_auth = 'https://www.googleapis.com/auth/userinfo.email';
   var facebook_id = '';
+
 
   ctrl.googleLogin = function() {
     $cordovaOauth
-      .google(google_id, [url_short, google_auth])
+      .google(google_id, [url_short , google_auth])
         .then(function(result) {
           console.log(JSON.stringify(result));
         }, function(error) {
@@ -26,7 +25,7 @@ function AuthCtrl($cordovaOauth) {
 
   ctrl.fbLogin = function() {
     $cordovaOauth
-      .facebook(facebook_id, 'email, public_profile', {"auth_type": "rerequest"})
+      .facebook(facebook_id, ['email','public_profile'], {"auth_type": "rerequest"})
         .then(function(result) {
           console.log(JSON.stringify(result));
         }, function(error) {
