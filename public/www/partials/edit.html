@@ -1,0 +1,86 @@
+<ion-header-bar class="bar-stable navbar">
+    <h1 class="title">Edit</h1>
+    <a href="/"><i class='icon ion-chevron-left nav-icon'></i></a>
+</ion-header-bar>
+<ion-content>
+  <form ng-submit='ctrl.editHabit()'>
+    <label class="item item-input">
+      <span class="input-label">Title</span>
+      <input type="text" ng-model="title" value='{{habit.title}}'>
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Description</span>
+      <input type="text" ng-model="desc" value='{{habit.desc}}'>
+    </label>
+    <div class='notify'>
+      <ion-toggle ng-model='notify' ng-checked='habit.notify' toggle-class='toggle-calm'>Notifications</ion-toggle>
+      <button class='button' ng-click='ctrl.openTimePicker()'>  Reminder Time:   {{ ctrl.time || "set time here" }}</button>
+    </div>
+    <ul class="list">
+      <li class="item item-toggle">
+         Sunday
+         <label class="toggle toggle-assertive">
+           <input type="checkbox" ng-model="sun">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+      <li class="item item-toggle">
+         Monday
+         <label class="toggle toggle-assertive">
+           <input type="checkbox" ng-model="mon">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+      <li class="item item-toggle">
+         Tuesday
+         <label class="toggle toggle-assertive">
+           <input type="checkbox" ng-model="tue">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+      <li class="item item-toggle">
+         Wednesday
+         <label class="toggle toggle-assertive">
+           <input type="checkbox" ng-model="wed">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+      <li class="item item-toggle">
+         Thursday
+         <label class="toggle toggle-assertive">
+           <input type="checkbox" ng-model="thu">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+      <li class="item item-toggle">
+         Friday
+         <label class="toggle toggle-assertive">
+           <input type="checkbox" ng-model="fri">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+      <li class="item item-toggle">
+         Saturday
+         <label class="toggle toggle-assertive">
+           <input type="checkbox" ng-model="sat">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+    </ul>
+    <button type="submit" class="button button-main">Update Habit</button>
+  </form>
+</ion-content>
