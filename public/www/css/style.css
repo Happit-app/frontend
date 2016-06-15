@@ -33,7 +33,7 @@
   color: #fff;
 }
 
-.android-title {
+.androidTitle {
   margin-left: 40px;
 }
 
@@ -55,6 +55,18 @@
 
 .habit-cards a {
   text-decoration: none;
+}
+
+.completed-icon {
+  float: right;
+  font-size: 18pt;
+  color: #0091EA;
+}
+
+.incomplete-icon {
+  float: right;
+  font-size: 18pt;
+  color: #FF9100;
 }
 
 /* HABIT STYLES */
