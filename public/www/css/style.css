@@ -1,7 +1,13 @@
 /* MAIN STYLES */
 
+.nav-icon {
+  font-size: 12pt;
+  margin-left: 6px;
+}
+
 .settings-icon {
-  font-size: 16pt;
+  font-size: 14pt;
+  margin-left: 6px;
 }
 
 .navbar {
@@ -25,6 +31,10 @@
 .button-main {
   background-color: #00BCD4;
   color: #fff;
+}
+
+.android-title {
+  margin-left: 40px;
 }
 
 /* HOME STYLES */
