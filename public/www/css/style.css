@@ -1,1 +1,85 @@
-/* Empty. Add your own CSS if you like */
+/* MAIN STYLES */
+
+.settings-icon {
+  font-size: 16pt;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+.navbar a {
+  color: #fff;
+}
+
+.bar.bar-stable {
+  background-color: #00BCD4;
+  color: #fff;
+}
+
+.bar.bar-stable .title {
+    color: #fff;
+}
+
+.button-main {
+  background-color: #00BCD4;
+  color: #fff;
+}
+
+/* HOME STYLES */
+
+.item-divider {
+  background-color: #eee;
+}
+
+.create-new {
+  text-align: center;
+  padding: 20px;
+  color: #ccc;
+}
+
+.create-new i {
+  font-size: 28pt;
+}
+
+.habit-cards a {
+  text-decoration: none;
+}
+
+/* HABIT STYLES */
+
+
+/* FORM STYLES */
+
+
+/* LOGIN STYLES */
+
+.oauth-container {
+  display: flex;
+  align-items: center;
+  vertical-align: center;
+  flex-direction: column;
+}
+
+.oauth-button {
+  width: 210px;
+  margin-top: 14px;
+  color: #fff;
+}
+
+.oauth-container i {
+  margin-right: 14px;
+}
+
+.oauth-twitter {
+  background-color: #1DA1F2;
+}
+
+.oauth-facebook {
+  background-color: #3B5998;
+}
+
+.oauth-google {
+  background-color: #DB4437;
+}

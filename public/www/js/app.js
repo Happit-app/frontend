@@ -33,7 +33,7 @@
           controller: 'UserCtrl as ctrl'
         })
         .state('habit', {
-          url: '/habit',
+          url: '/habit/:id',
           templateUrl: 'partials/habit.html',
           controller: 'HabitCtrl as ctrl'
         })
