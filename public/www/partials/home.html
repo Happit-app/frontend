@@ -1,5 +1,5 @@
 <div class="card habit-cards" ng-repeat="habit in ctrl.allHabits | filter: title">
-  <a ng-href="/habit">
+  <a ng-href="/habit/{{habit.id}}">
     <div class="item item-divider">
       {{habit.title}}
     </div>
