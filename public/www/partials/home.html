@@ -1,18 +1,24 @@
-<div class="card habit-cards" ng-repeat="habit in ctrl.allHabits | filter: title">
-  <a ng-href="/habit/{{habit.id}}">
-    <div class="item item-divider">
-      {{habit.title}}
+<ion-header-bar class="bar-stable navbar">
+  <h1 class="title" ng-class="{'android-title': platform === 'android'}">Happit</h1>
+  <a href="/settings"><i class='icon ion-gear-a nav-icon settings-icon'></i></a>
+</ion-header-bar>
+<ion-content>
+  <div class="card habit-cards" ng-repeat="habit in ctrl.allHabits | filter: title">
+    <a ng-href="/habit/{{habit.id}}">
+      <div class="item item-divider">
+        {{habit.title}}
+      </div>
+    </a>
+    <div ng-show="habit.completed" class="item item-text-wrap">
+      Great job!
+    </div>
+    <div ng-show="!habit.completed" class="item item-text-wrap">
+      Have you completed this today?
+    </div>
+  </div>
+  <a href="/new">
+    <div class="card create-new">
+      <i class="icon ion-plus"></i>
     </div>
   </a>
-  <div ng-show="habit.completed" class="item item-text-wrap">
-    Great job!
-  </div>
-  <div ng-show="!habit.completed" class="item item-text-wrap">
-    Have you completed this today?
-  </div>
-</div>
-<a href="/new">
-  <div class="card create-new">
-    <i class="icon ion-plus"></i>
-  </div>
-</a>
+</ion-content>
