@@ -1,0 +1,13 @@
+<ion-card ng-repeat="habit in ctrl.allHabits | filter: title">
+  <ion-card-header>
+    {{habit.title}}
+  </ion-card-header>
+  <ion-card-content>
+    <div ng-show="habit.completedToday">
+      Great job!
+    </div>
+    <div ng-show="!habit.completedToday">
+      Have you completed this today?
+    </div>
+  </ion-card-content>
+</ion-card>
