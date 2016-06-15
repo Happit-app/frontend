@@ -13,20 +13,18 @@
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <!-- ngCordovaOauth for Dev-->
-    <script src='lib/ng-cordova-oauth/dist/ng-cordova-oauth.js'></script>
-
     <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+    <!-- <script src="cordova.js"></script> -->
 
     <!-- ui-router -->
-    <script src="lib/angular-ui-router/angular-ui-router.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
 
     <!-- your app's js -->
     <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script> -->
     <script src="js/app.js" type="text/javascript"></script>
 
-    <!-- ngCordovaOauth -->
+    <!-- ngCordova -->
+    <script src='lib/ng-cordova-master/ng-cordova.js'></script>
     <script src="lib/ng-cordova-oauth/dist/ng-cordova-oauth.min.js"></script>
 
     <script src="js/controllers/habits.js" type="text/javascript"></script>
@@ -36,7 +34,7 @@
     <script src="js/services/habits.js" type="text/javascript"></script>
     <script src="js/services/auth.js" type="text/javascript"></script>
     <script src="js/services/user.js" type="text/javascript"></script>
-    <base href="/">
+    <!-- <base href="/"> -->
   </head>
   <body ng-app="happit">
     <ion-pane>

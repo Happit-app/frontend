@@ -6,7 +6,7 @@
 
 (function() {
   angular
-    .module('happit', ['ionic', 'ui.router'])
+    .module('happit', ['ionic', 'ui.router', 'ngCordova', 'ngCordovaOauth'])
     .config(routeHandler)
     .run(runBlock)
 
@@ -47,7 +47,7 @@
           templateUrl: 'partials/edit.html',
           controller: 'HabitCtrl as ctrl'
         })
-      $locationProvider.html5Mode(true);
+      // $locationProvider.html5Mode(true);
     }
 
     function runBlock($ionicPlatform) {
