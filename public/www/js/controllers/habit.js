@@ -8,6 +8,8 @@ function HabitCtrl() {
   var ctrl = this;
 
   this.service = HabitsServices;
-
+  this.newHabit = function() {
+    
+  }
 
 }

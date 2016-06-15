@@ -22,6 +22,11 @@
     color: #fff;
 }
 
+.button-main {
+  background-color: #00BCD4;
+  color: #fff;
+}
+
 /* HOME STYLES */
 
 .item-divider {
@@ -49,3 +54,32 @@
 
 
 /* LOGIN STYLES */
+
+.oauth-container {
+  display: flex;
+  align-items: center;
+  vertical-align: center;
+  flex-direction: column;
+}
+
+.oauth-button {
+  width: 210px;
+  margin-top: 14px;
+  color: #fff;
+}
+
+.oauth-container i {
+  margin-right: 14px;
+}
+
+.oauth-twitter {
+  background-color: #1DA1F2;
+}
+
+.oauth-facebook {
+  background-color: #3B5998;
+}
+
+.oauth-google {
+  background-color: #DB4437;
+}
