@@ -6,7 +6,7 @@
 
 (function() {
   angular
-    .module('happit', ['ionic', 'ui.router', 'ionic-timepicker'])
+    .module('happit', ['ionic', 'ui.router', 'ionic-timepicker', 'chartjs'])
     .config(routeHandler, ionicTimePickerProvider)
     .run(runBlock);
 

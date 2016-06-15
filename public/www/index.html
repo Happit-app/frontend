@@ -13,6 +13,13 @@
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
+    <!-- angular-charts -->
+    <script src="lib/ng-chartjs/dist/angular-chartjs.js"></script>
+
+
+    <!-- ionic-timepicker -->
+    <script src="lib/ionic-timepicker/dist/ionic-timepicker.bundle.min.js"></script>
+
     <!-- ngCordovaOauth for Dev-->
     <script src='lib/ng-cordova-oauth/dist/ng-cordova-oauth.js'></script>
 
@@ -20,10 +27,7 @@
     <script src="cordova.js"></script>
 
     <!-- ui-router -->
-    <script src="lib/angular-ui-router/angular-ui-router.js"></script>
-
-    <!-- ionic-timepicker -->
-    <script src="lib/ionic-timepicker/dist/ionic-timepicker.bundle.min.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
 
     <!-- your app's js -->
     <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script> -->
@@ -43,13 +47,7 @@
   </head>
   <body ng-app="happit">
     <ion-pane>
-      <ion-header-bar class="bar-stable navbar">
-        <h1 class="title">Happit</h1>
-        <a href="/settings"><i class='icon ion-gear-a settings-icon'></i></a>
-      </ion-header-bar>
-      <ion-content>
-        <div ui-view></div>
-      </ion-content>
+      <div ui-view></div>
     </ion-pane>
   </body>
 </html>

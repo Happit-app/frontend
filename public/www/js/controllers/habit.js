@@ -1,15 +1,19 @@
 angular
   .module('happit')
-    .controller('HabitCtrl', HabitCtrl)
+  .controller('HabitCtrl', HabitCtrl);
 
-HabitCtrl.$inject = []
+HabitCtrl.$inject = ['HabitsServices', 'ionicTimePicker'];
 
-function HabitCtrl() {
+function HabitCtrl(HabitsServices, ionicTimePicker) {
   var ctrl = this;
 
   this.service = HabitsServices;
-  
+
   this.newHabit = function() {
+
+  }
+
+  this.editHabit = function() {
 
   }
 

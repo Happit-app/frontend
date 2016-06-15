@@ -7,6 +7,6 @@ HabitsServices.$inject = []
 function HabitsServices() {
 
   return {
-    // methods here
+    
   }
 };
