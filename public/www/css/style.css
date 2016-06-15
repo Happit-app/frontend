@@ -71,6 +71,31 @@
 
 /* HABIT STYLES */
 
+.calendar-container {
+  margin: 8px 10px;
+}
+
+.calendar-container calendar-md md-toolbar {
+  background-color: #eee;
+}
+
+.calendar-container calendar-md {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+}
+
+.calendar-container calendar-md md-content {
+  border: none;
+}
+
+.calendar-container .calendar-md-title {
+  font-size: 12pt;
+}
+
+.calendar-container md-toolbar md-icon {
+  color: #000;
+  fill: #000;
+}
 
 /* FORM STYLES */
 

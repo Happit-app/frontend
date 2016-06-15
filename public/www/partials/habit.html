@@ -1,9 +1,26 @@
-<ion-view view-title='Habit'>
-  <ion-header-bar>
-    <h2>{{habit.title}}</h2>
-    <a href="/edit"><i class='icon ion-edit settings-icon'></i></a>
-  </ion-header-bar>
-  <ion-content>
-    <p>My goal is to: {{habit.desc}}</p>
-  </ion-content>
-</ion-view>
+<ion-header-bar class="bar-stable navbar">
+  <h1 class="title">{{habit.title}} Title</h1>
+  <a href="/#/edit"><i class='icon ion-edit settings-icon'></i></a>
+</ion-header-bar>
+<ion-content>
+  <p>My goal is to: {{habit.desc}}</p>
+  
+  <div class="calendar-container">
+    <calendar-md flex layout layout-fill
+    on-prev-month="prevMonth"
+    on-next-month="nextMonth"
+    on-day-click="dayClick"
+    title-format="'MMMM y'"
+    ng-model='selectedDate'
+    week-starts-on="firstDayOfWeek"
+    tooltips="tooltips"
+    day-format="dayFormat"
+    day-label-format="'EEE'"
+    day-label-tooltip-format="'EEEE'"
+    day-tooltip-format="'fullDate'"
+    day-content="setDayContent"
+    disable-future-selection="true"
+    ></calendar-md>
+  </div>
+
+</ion-content>
