@@ -1,0 +1,13 @@
+<ion-view view-title='Habit'>
+  <ion-content>
+    <div class='habit-head'>
+      <h2>{{habit.title}}</h2>
+    </div>
+    <p>My goal is to: {{habit.desc}}</p>
+    <div class='notify'>
+      <ion-toggle ng-model='habit.notify' ng-checked='habit.notify' toggle-class='toggle-calm'>Notifications</ion-toggle>
+      <button class='button' ng-click='openTimePicker()'>Set Notification Time</button>
+      
+    </div>
+  </ion-content>
+</ion-view>

@@ -6,9 +6,9 @@
 
 (function() {
   angular
-    .module('happit', ['ionic', 'ui.router'])
-    .config(routeHandler)
-    .run(runBlock)
+    .module('happit', ['ionic', 'ui.router', 'ionic-timepicker'])
+    .config(routeHandler, ionicTimePickerProvider)
+    .run(runBlock);
 
     routeHandler.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider']
     runBlock.$inject = ['$ionicPlatform'];
@@ -66,6 +66,17 @@
           StatusBar.styleDefault();
         }
       });
+    }
+
+    function ionicTimePickerProvider() {
+      var timePickerObj = {
+        inputTime: ((new Date().getHours() *60 * 60) + ((new Date()).getMinutes * 60 )),
+        format: 12,
+        step: 15,
+        setLabel: 'Set',
+        closeLabel: 'Close'
+      };
+      ionicTimePickerProvider.configTimePicker(timePickerObj);
     }
 
 })();
