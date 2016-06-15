@@ -14,8 +14,7 @@
         <input type="text" ng-model="desc">
       </label>
       <label class="item item-input">
-        <span class="input-label">Reminder Time</span>
-        <input type="time" ng-model="time">
+        <button class='button' ng-click='ctrl.openTimePicker()'>  Reminder Time:   {{ ctrl.time || "set time here" }}</button>
       </label>
       <ul class="list">
         <li class="item item-toggle">
