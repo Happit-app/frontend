@@ -5,12 +5,16 @@
     .module("happit")
     .factory("UserServices", UserServices)
 
-  UserServices.$inject = []
+  UserServices.$inject = ['$window']
 
-  function UserServices() {
+  function UserServices($window) {
 
-    return {
-      // methods here
+    function current(user, token) {
+      $window.localStorage.setItem('user', user);
+      $window.localStorage.setItem('token', token);
     }
+
+    return { current }
+
   };
 })();
