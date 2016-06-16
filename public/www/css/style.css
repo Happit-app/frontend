@@ -154,3 +154,11 @@
 .oauth-google {
   background-color: #DB4437;
 }
+
+.greeting {
+  padding-top: 50px;
+}
+
+.set-tog {
+  height:60px;
+}
