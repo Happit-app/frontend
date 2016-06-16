@@ -1,28 +1,33 @@
-angular
+(function() {
+  angular
   .module('happit')
-    .controller('AuthCtrl', AuthCtrl)
+  .controller('AuthCtrl', AuthCtrl)
 
-AuthCtrl.$inject = ['$cordovaOauth', '$http', 'AuthServices']
+  AuthCtrl.$inject = ['$cordovaOauth', '$http', 'AuthServices', '$location', 'UserServices'];
 
-function AuthCtrl($cordovaOauth, $http, AuthServices) {
+  function AuthCtrl($cordovaOauth, $http, AuthServices, $location, UserServices) {
 
-  var ctrl = this;
-  var fb = { id: '',
-             api: 'https://graph.facebook.com/v2.5/me?fields=name,email' };
+    var ctrl = this;
+    var fb = { id: '' };
 
-  ctrl.fbLogin = function() {
-    $cordovaOauth
+    ctrl.fbLogin = function() {
+      $cordovaOauth
       .facebook(fb.id, ['email','public_profile'], { 'auth_type': 'rerequest' })
       .then(function(result) {
-          AuthServices.fb_exc(fb.api, result.access_token)
-          .then(function(profile){
-            // AuthServices.login(profile);
-            console.log(profile);
-          })
-        }, function(error) {
-          console.log(JSON.stringify(error));
-        });
-  }
+        AuthServices.fb_exc(result.access_token)
+        .then(function(profile){
+          console.log(profile);
+          UserServices.current(profile.user, profile.token);
+          $location.path('/login')
+        })
+        .catch(function() {
+          $location.path('/');
+        })
+      }, function(error) {
+        console.log(JSON.stringify(error));
+      });
+    }
 
-  this.service = AuthServices;
-}
+    this.service = AuthServices;
+  }
+})();
