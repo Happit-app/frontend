@@ -12,16 +12,10 @@
     this.time;
     this.service = HabitsServices;
 
-    this.getHabit = function(id) {
-      HabitsServices.getHabit(id).then( (habit) => {
-        return habit;
-      }).catch( (err) => {
-        console.log(err);
-      })
-    }
-
     this.service.getHabit($stateParams.id).then(function(data) {
       ctrl.habit = data;
+    }).catch(function(err) {
+      console.log(err);
     });
 
     this.setDayContent = function(date) {
@@ -34,6 +28,10 @@
         }
       }
     };
+
+    this.dayClick = function(date) {
+      console.log(date);
+    }
 
     this.addHabit = function(habit, time) {
       habit.time = time;

@@ -18,8 +18,8 @@ function HabitsCtrl(HabitsServices) {
     this.service.completeTask(id);
   };
 
-  this.incompleteTask = function(id) {
-    this.service.incompleteTask(id);
+  this.undoTask = function(id) {
+    this.service.undoTask(id);
   };
 
 }
