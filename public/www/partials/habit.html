@@ -1,9 +1,9 @@
 <ion-header-bar class="bar-stable navbar">
-  <h1 class="title">{{habit.title}} Title</h1>
+  <h1 class="title">{{ctrl.habit.title}}</h1>
   <a href="/#/edit"><i class='icon ion-edit settings-icon'></i></a>
 </ion-header-bar>
 <ion-content>
-  <p>My goal is to: {{habit.desc}}</p>
+  <p>{{ctrl.habit.desc}}</p>
 
   <div class="calendar-container">
     <calendar-md flex layout layout-fill

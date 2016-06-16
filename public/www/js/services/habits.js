@@ -5,7 +5,7 @@ angular
 HabitsServices.$inject = ['$http']
 
 function HabitsServices($http) {
-  var api = 'http://localhost:3000/';
+  var api = 'https://hapit-app.herokuapp.com/';
 
   return {
     completeTask: function(id) {
@@ -15,9 +15,18 @@ function HabitsServices($http) {
 
     },
     getHabit: function(id) {
-      console.log(id);
-      return $http.get(api + '/habits/' + id).then(function(data) {
-        return data;
+      return $http.get(api + 'habits/' + id).then(function(data) {
+        if (data.data.dates) {
+          data.data.dates = data.data.dates.map(function(date) {
+            return new Date(date);
+          });
+        }
+        return data.data;
+      });
+    },
+    getAllHabits: function(user_id) {
+      return $http.get(api + 'users/' + user_id + '/habits').then(function(data) {
+        return data.data;
       });
     }
   }

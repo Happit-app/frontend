@@ -2,20 +2,27 @@ angular
   .module('happit')
   .controller('HabitCtrl', HabitCtrl);
 
-HabitCtrl.$inject = ['HabitsServices', 'ionicTimePicker', '$stateParams'];
+HabitCtrl.$inject = ['HabitsServices', 'ionicTimePicker', '$stateParams', '$scope'];
 
-function HabitCtrl(HabitsServices, ionicTimePicker, $stateParams) {
+function HabitCtrl(HabitsServices, ionicTimePicker, $stateParams, $scope) {
   var ctrl = this;
   this.time;
 
   this.service = HabitsServices;
 
-  this.habit = this.service.getHabit($stateParams.id);
-  console.log(this.habit);
+  this.service.getHabit($stateParams.id).then(function(data) {
+    ctrl.habit = data;
+  });
 
   this.setDayContent = function(date) {
-    // if date is present in list of habit's completed days
-    return '<div class="completedDay"></div>'
+    if (ctrl.habit && ctrl.habit.dates) {
+      for (var i = 0; i < ctrl.habit.dates.length; i++) {
+        var currentDate = ctrl.habit.dates[i];
+        if (currentDate.getFullYear() === date.getFullYear() && currentDate.getMonth() === date.getMonth() && currentDate.getDate() === date.getDate()) {
+          return '<div class="completedDay"></div>'
+        }
+      }
+    }
   };
 
   this.newHabit = function() {

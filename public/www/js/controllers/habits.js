@@ -8,27 +8,11 @@ function HabitsCtrl(HabitsServices) {
   var ctrl = this;
 
   this.service = HabitsServices;
+  this.user_id = 4;
 
-  this.allHabits = [
-    {
-      id: 1,
-      title: 'Meditate',
-      description: '',
-      completed: true
-    },
-    {
-      id: 2,
-      title: 'Run for 20 minutes',
-      description: '',
-      completed: false
-    },
-    {
-      id: 3,
-      title: 'Journal when stressed',
-      description: '',
-      completed: true
-    }
-  ];
+  this.service.getAllHabits(ctrl.user_id).then(function(data) {
+    ctrl.allHabits = data;
+  });
 
   this.completeTask = function(id) {
     this.service.completeTask(id);
@@ -36,10 +20,6 @@ function HabitsCtrl(HabitsServices) {
 
   this.incompleteTask = function(id) {
     this.service.incompleteTask(id);
-  };
-
-  this.handleDayClick = function(day) {
-    return '<p>done</p>'
   };
 
 }
