@@ -13,6 +13,7 @@
     this.service = HabitsServices;
 
     this.service.getHabit($stateParams.id).then(function(data) {
+      console.log($stateParams.id)
       ctrl.habit = data;
     }).catch(function(err) {
       console.log(err);
@@ -27,14 +28,14 @@
           }
         }
       }
-      return '<div></div>';
+      return '';
     };
 
     this.dayClick = function(date) {
       var habit_id = ctrl.habit.id;
-      var habitDates = ctrl.habit.dates;
+      var habitDates = ctrl.habit.dates || [];
 
-      if (habitDates) {
+      if (habitDates.length) {
         for (var i = 0; i < habitDates.length; i++) {
           var currentDate = habitDates[i];
           if (currentDate.getFullYear() === date.getFullYear() && currentDate.getMonth() === date.getMonth() && currentDate.getDate() === date.getDate()) {
@@ -49,11 +50,11 @@
       habitDates.push(date);
       ctrl.rerenderCal();
       HabitsServices.completeTask(habit_id, date);
-    }
+    };
 
     this.rerenderCal = function() {
       angular.element(document.querySelector('calendar-md')).scope().$$childHead._$$bootstrap();
-    }
+    };
 
     this.addHabit = function(habit, time) {
       habit.time = time;

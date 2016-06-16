@@ -42,6 +42,14 @@
       },
       getAllHabits: function(user_id) {
         return $http.get(api + '/users/' + user_id + '/habits').then(function(data) {
+          data.data.map(function(habit) {
+            if (habit.dates) {
+              habit.dates = habit.dates.map(function(date) {
+                var newDate = date.substr(0, 10).split('-');
+                return new Date(newDate[0], newDate[1] - 1, newDate[2]);
+              });
+            }
+          })
           return data.data;
         });
       },
