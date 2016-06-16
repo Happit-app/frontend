@@ -4,7 +4,7 @@
 </ion-header-bar>
 <ion-content>
   <p>My goal is to: {{habit.desc}}</p>
-  
+
   <div class="calendar-container">
     <calendar-md flex layout layout-fill
     on-prev-month="prevMonth"
@@ -18,7 +18,7 @@
     day-label-format="'EEE'"
     day-label-tooltip-format="'EEEE'"
     day-tooltip-format="'fullDate'"
-    day-content="setDayContent"
+    day-content="ctrl.setDayContent"
     disable-future-selection="true"
     ></calendar-md>
   </div>
