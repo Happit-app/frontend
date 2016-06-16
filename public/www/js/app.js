@@ -6,7 +6,7 @@
 
 (function() {
   angular
-    .module('happit', ['ionic', 'ui.router', 'ngCordova', 'ngCordovaOauth', 'ionic-timepicker', 'chartjs'])
+    .module('happit', ['ionic', 'ui.router', 'ngCordova', 'ngCordovaOauth', 'ionic-timepicker', 'chartjs', 'ngMaterial', 'materialCalendar'])
     .config(routeHandler)
     .run(runBlock)
 

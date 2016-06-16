@@ -5,11 +5,11 @@
     .module('happit')
     .controller('HabitCtrl', HabitCtrl);
 
-  HabitCtrl.$inject = ['HabitsServices', 'ionicTimePicker', '$state'];
+    HabitCtrl.$inject = ['HabitsServices', 'ionicTimePicker','$state', '$stateParams'];
 
-  function HabitCtrl(HabitsServices, ionicTimePicker, $state) {
-    var ctrl = this;
-    this.time;
+function HabitCtrl(HabitsServices, ionicTimePicker, $state, $stateParams) {
+  var ctrl = this;
+  this.time;
 
     this.getHabit = function(id) {
       HabitsServices.getHabit(id).then( (habit) => {
@@ -18,6 +18,13 @@
         console.log(err);
       })
     }
+  this.habit = this.service.getHabit($stateParams.id);
+  console.log(this.habit);
+
+  this.setDayContent = function(date) {
+    // if date is present in list of habit's completed days
+    return '<div class="completedDay"></div>'
+  };
 
     this.addHabit = function(habit, time) {
       habit.time = time;

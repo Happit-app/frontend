@@ -1,10 +1,10 @@
 <ion-header-bar class="bar-stable navbar">
   <h1 class="title" ng-class="{'androidTitle': platform == 'android'}">Happit</h1>
-  <a href="/settings"><i class='icon ion-gear-a nav-icon settings-icon'></i></a>
+  <a href="/#/settings"><i class='icon ion-gear-a nav-icon settings-icon'></i></a>
 </ion-header-bar>
 <ion-content>
   <div class="card habit-cards" ng-repeat="habit in ctrl.allHabits | filter: title">
-    <a ng-href="/habit/{{habit.id}}">
+    <a ng-href="/#/habit/{{habit.id}}">
       <div class="item item-divider">
         {{habit.title}}
       </div>

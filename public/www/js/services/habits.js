@@ -5,9 +5,7 @@
     .module("happit")
     .factory("HabitsServices", HabitsServices);
 
-  HabitsServices.$inject = ['$q', '$http'];
-
-  function HabitsServices($q, $http) {
+function HabitsServices($http) {
 
     const api = 'http://localhost:3000/';
 
@@ -18,13 +16,12 @@
         });
       },
       undoTask: function(id) {
-        return $http.delete(api + '/habits/success/:id').then( (data) => {
+        return $http.delete(api + '/habits/success/' + id).then( (data) => {
           return data;
         });
       },
       editHabit: function(habit, time) {
         return $http.put(api + 'habits/:id/update', habit).then( (data)=> {
-          console.log(data);
           return data;
         });
       },
@@ -34,12 +31,12 @@
         });
       },
       getHabit: function(id) {
-        $http.get(api + 'habits/:id').then( (data) => {
+        $http.get(api + 'habits/' + id).then( (data) => {
           return data;
         });
       },
       deleteHabit: function(id) {
-        $http.delete(api + 'habits/:id/delete').then( (data) => {
+        $http.delete(api + 'habits/' + id + '/delete').then( (data) => {
           return data;
         });
       }

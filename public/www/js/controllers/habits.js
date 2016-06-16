@@ -2,9 +2,9 @@ angular
   .module('happit')
     .controller('HabitsCtrl', HabitsCtrl)
 
-HabitsCtrl.$inject = []
+HabitsCtrl.$inject = ['HabitsServices']
 
-function HabitsCtrl() {
+function HabitsCtrl(HabitsServices) {
   var ctrl = this;
 
   this.service = HabitsServices;
@@ -37,4 +37,9 @@ function HabitsCtrl() {
   this.incompleteTask = function(id) {
     this.service.incompleteTask(id);
   };
+
+  this.handleDayClick = function(day) {
+    return '<p>done</p>'
+  };
+
 }
