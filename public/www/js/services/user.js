@@ -1,12 +1,16 @@
-angular
-  .module("happit")
-  .factory("UserServices", UserServices)
+(function() {
+  'use strict';
 
-UserServices.$inject = []
+  angular
+    .module("happit")
+    .factory("UserServices", UserServices)
 
-function UserServices() {
+  UserServices.$inject = []
 
-  return {
-    // methods here
-  }
-};
+  function UserServices() {
+
+    return {
+      // methods here
+    }
+  };
+})();

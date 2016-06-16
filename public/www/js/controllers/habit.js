@@ -1,40 +1,89 @@
-angular
-  .module('happit')
-  .controller('HabitCtrl', HabitCtrl);
+(function() {
+  'use strict';
 
-HabitCtrl.$inject = ['HabitsServices', 'ionicTimePicker', '$stateParams', '$scope'];
+  angular
+    .module('happit')
+    .controller('HabitCtrl', HabitCtrl);
 
-function HabitCtrl(HabitsServices, ionicTimePicker, $stateParams, $scope) {
-  var ctrl = this;
-  this.time;
+  HabitCtrl.$inject = ['HabitsServices', 'ionicTimePicker','$state', '$stateParams'];
 
-  this.service = HabitsServices;
+  function HabitCtrl(HabitsServices, ionicTimePicker, $state, $stateParams) {
+    var ctrl = this;
+    this.time;
+    this.service = HabitsServices;
 
-  this.service.getHabit($stateParams.id).then(function(data) {
-    ctrl.habit = data;
-  });
+    this.getHabit = function(id) {
+      HabitsServices.getHabit(id).then( (habit) => {
+        return habit;
+      }).catch( (err) => {
+        console.log(err);
+      })
+    }
 
-  this.setDayContent = function(date) {
-    if (ctrl.habit && ctrl.habit.dates) {
-      for (var i = 0; i < ctrl.habit.dates.length; i++) {
-        var currentDate = ctrl.habit.dates[i];
-        if (currentDate.getFullYear() === date.getFullYear() && currentDate.getMonth() === date.getMonth() && currentDate.getDate() === date.getDate()) {
-          return '<div class="completedDay"></div>'
+    this.service.getHabit($stateParams.id).then(function(data) {
+      ctrl.habit = data;
+    });
+
+    this.setDayContent = function(date) {
+      if (ctrl.habit && ctrl.habit.dates) {
+        for (var i = 0; i < ctrl.habit.dates.length; i++) {
+          var currentDate = ctrl.habit.dates[i];
+          if (currentDate.getFullYear() === date.getFullYear() && currentDate.getMonth() === date.getMonth() && currentDate.getDate() === date.getDate()) {
+            return '<div class="completedDay"></div>'
+          }
         }
       }
-    }
-  };
+    };
 
-  this.newHabit = function() {
+    this.addHabit = function(habit, time) {
+      habit.time = time;
+      habit.user_id = 2;
 
-  }
+      HabitsServices.addHabit(habit).then( () => {
+        $state.go('home');
+      }).catch( (err) => {
+        console.log(err);
+      });
+    };
 
-  this.editHabit = function() {
+    this.editHabit = function(habit, time) {
+      habit.time = time;
+      habit.user_id = 2;
 
-  }
+      HabitsServices.editHabit(habit, time).then( ()=> {
+        $state.go();
+      }).catch( (err) => {
+        console.log(err);
+      });
+    };
 
-  this.openTimePicker = function() {
-    var min;
+    this.deleteHabit = function(habit, time) {
+      HabitsServices.deleteHabit(id).then( () => {
+        $state.go('home');
+      }).catch( (err) => {
+        console.log(err);
+      });
+    };
+
+    this.completeTask = function(habit) {
+      HabitsServices.completeTask(habit).then( (data)=> {
+        return data;
+      }).catch( (err) => {
+        console.log(err);
+      });
+    };
+
+    this.undoTask = function(id) {
+      HabitsServices.undoTask(id).then( () => {
+        $state.go('habits');
+      }).catch( (err) => {
+        console.log(err);
+      });
+    };
+
+    this.openTimePicker = function() {
+      var min;
+
       var ipObj1 = {
         callback: function (val) {
           if (typeof (val) === 'undefined') {
@@ -49,6 +98,7 @@ function HabitCtrl(HabitsServices, ionicTimePicker, $stateParams, $scope) {
                min = selectedTime.getUTCMinutes()
             }
             ctrl.time = hour + ":" + min;
+            this.time = ctrl.time;
           }
         },
         inputTime: 50400,
@@ -57,4 +107,5 @@ function HabitCtrl(HabitsServices, ionicTimePicker, $stateParams, $scope) {
       };
       ionicTimePicker.openTimePicker(ipObj1);
     };
-}
+  };
+})();
