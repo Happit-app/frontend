@@ -1,5 +1,5 @@
 <ion-header-bar class="bar-stable navbar">
-  <h1 class="title" ng-class="{'android-title': platform === 'android'}">Happit</h1>
+  <h1 class="title" ng-class="{'androidTitle': platform == 'android'}">Happit</h1>
   <a href="/settings"><i class='icon ion-gear-a nav-icon settings-icon'></i></a>
 </ion-header-bar>
 <ion-content>
@@ -10,10 +10,12 @@
       </div>
     </a>
     <div ng-show="habit.completed" class="item item-text-wrap">
-      Great job!
+      <span>Great job!<span>
+      <span class="completed-icon"><i class="icon ion-android-checkmark-circle" ng-click="ctrl.incompleteTask(habit.id)"></i></span>
     </div>
     <div ng-show="!habit.completed" class="item item-text-wrap">
-      Have you completed this today?
+      <span>Have you completed this today?<span>
+      <span class="incomplete-icon"><i class="icon ion-android-radio-button-off" ng-click="ctrl.completeTask(habit.id)"></i></span>
     </div>
   </div>
   <a href="/new">
