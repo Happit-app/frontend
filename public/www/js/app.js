@@ -35,7 +35,7 @@
         .state('habit', {
           url: '/habit/:id',
           templateUrl: 'partials/habit.html',
-          controller: 'HabitCtrl as ctrl'
+          controller: 'HabitCtrl as ctrl',
         })
         .state('new', {
           url: '/new',

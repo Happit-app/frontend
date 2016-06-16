@@ -6,7 +6,6 @@
     .factory("HabitsServices", HabitsServices);
 
 function HabitsServices($http) {
-
     const api = 'http://localhost:3000/';
 
     return {
