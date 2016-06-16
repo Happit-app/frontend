@@ -5,8 +5,8 @@
         An Ionic Framework and Cordova project.
     </description>
   <author email="you@example.com" href="http://example.com.com/">
-      Your Name Here
-    </author>
+    My Pride Dino
+  </author>
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
@@ -20,6 +20,7 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+  <gap:plugin name="de.appplant.cordova.plugin.local-notification" />
   <platform name="ios">
     <icon src="resources/ios/icon/icon.png" width="57" height="57"/>
     <icon src="resources/ios/icon/icon@2x.png" width="114" height="114"/>

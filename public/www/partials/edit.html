@@ -13,7 +13,15 @@
       <input type="text" ng-model="habit.desc">
     </label>
     <div class='notify'>
-      <ion-toggle ng-model="habit.notify"  ng-checked='habit.notify' toggle-class='toggle-success'>Notifications</ion-toggle>
+      <div class='item item-toggle'>
+        Notifications
+        <label class="toggle toggle-success">
+          <input type="checkbox" ng-model="habit.sun">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </div>
       <div class='button' ng-model='habit.time' value='ctrl.time' ng-click='ctrl.openTimePicker()'>
         <p>Reminder Time:   {{ ctrl.time || "set time here" }}</p>
       </div>
