@@ -11,11 +11,11 @@
     </a>
     <div ng-show="habit.completed" class="item item-text-wrap">
       <span>Great job!<span>
-      <span class="completed-icon"><i class="icon ion-android-checkmark-circle" ng-click="ctrl.incompleteTask(habit.id)"></i></span>
+      <span class="completed-icon"><i class="icon ion-android-checkmark-circle" ng-click="ctrl.undoTask(habit)"></i></span>
     </div>
     <div ng-show="!habit.completed" class="item item-text-wrap">
       <span>Have you completed this today?<span>
-      <span class="incomplete-icon"><i class="icon ion-android-radio-button-off" ng-click="ctrl.completeTask(habit.id)"></i></span>
+      <span class="incomplete-icon"><i class="icon ion-android-radio-button-off" ng-click="ctrl.completeTask(habit)"></i></span>
     </div>
   </div>
   <a href="/#/new">
