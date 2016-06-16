@@ -5,7 +5,7 @@
 <ion-content>
   <p>{{ctrl.habit.desc}}</p>
 
-  <div class="calendar-container">
+  <div class="calendar-container" ng-if="ctrl.habit">
     <calendar-md flex layout layout-fill
     on-prev-month="prevMonth"
     on-next-month="nextMonth"
