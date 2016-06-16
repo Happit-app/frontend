@@ -3,24 +3,27 @@
   <a href="/"><i class='icon ion-chevron-left nav-icon'></i></a>
 </ion-header-bar>
 <ion-content>
-  <form ng-submit="ctrl.newHabit()">
+  <form ng-submit="ctrl.addHabit(habit, ctrl.time)">
     <div class="list">
       <label class="item item-input">
         <span class="input-label">Title</span>
-        <input type="text" ng-model="title">
+        <input type="text" ng-model="habit.title">
       </label>
       <label class="item item-input">
         <span class="input-label">Description</span>
-        <input type="text" ng-model="desc">
+        <input type="text" ng-model="habit.desc">
       </label>
-      <label class="item item-input">
-        <button class='button' ng-click='ctrl.openTimePicker()'>  Reminder Time:   {{ ctrl.time || "set time here" }}</button>
-      </label>
+      <div class='notify'>
+        <ion-toggle ng-model="habit.notify"  ng-checked='habit.notify' toggle-class='toggle-success'>Notifications</ion-toggle>
+        <div class='button' ng-model='habit.time' value='ctrl.time' ng-click='ctrl.openTimePicker()'>
+          <p>Reminder Time:   {{ ctrl.time || "set time here" }}</p>
+        </div>
+      </div>
       <ul class="list">
         <li class="item item-toggle">
            Sunday
-           <label class="toggle toggle-assertive">
-             <input type="checkbox" ng-model="sun">
+           <label class="toggle toggle-success">
+             <input type="checkbox" ng-model="habit.sun">
              <div class="track">
                <div class="handle"></div>
              </div>
@@ -28,8 +31,8 @@
         </li>
         <li class="item item-toggle">
            Monday
-           <label class="toggle toggle-assertive">
-             <input type="checkbox" ng-model="mon">
+           <label class="toggle toggle-success">
+             <input type="checkbox" ng-model="habit.mon">
              <div class="track">
                <div class="handle"></div>
              </div>
@@ -37,8 +40,8 @@
         </li>
         <li class="item item-toggle">
            Tuesday
-           <label class="toggle toggle-assertive">
-             <input type="checkbox" ng-model="tue">
+           <label class="toggle toggle-success">
+             <input type="checkbox" ng-model="habit.tue">
              <div class="track">
                <div class="handle"></div>
              </div>
@@ -46,8 +49,8 @@
         </li>
         <li class="item item-toggle">
            Wednesday
-           <label class="toggle toggle-assertive">
-             <input type="checkbox" ng-model="wed">
+           <label class="toggle toggle-success">
+             <input type="checkbox" ng-model="habit.wed">
              <div class="track">
                <div class="handle"></div>
              </div>
@@ -55,8 +58,8 @@
         </li>
         <li class="item item-toggle">
            Thursday
-           <label class="toggle toggle-assertive">
-             <input type="checkbox" ng-model="thu">
+           <label class="toggle toggle-success">
+             <input type="checkbox" ng-model="habit.thu">
              <div class="track">
                <div class="handle"></div>
              </div>
@@ -64,8 +67,8 @@
         </li>
         <li class="item item-toggle">
            Friday
-           <label class="toggle toggle-assertive">
-             <input type="checkbox" ng-model="fri">
+           <label class="toggle toggle-success">
+             <input type="checkbox" ng-model="habit.fri">
              <div class="track">
                <div class="handle"></div>
              </div>
@@ -73,8 +76,8 @@
         </li>
         <li class="item item-toggle">
            Saturday
-           <label class="toggle toggle-assertive">
-             <input type="checkbox" ng-model="sat">
+           <label class="toggle toggle-success">
+             <input type="checkbox" ng-model="habit.sat">
              <div class="track">
                <div class="handle"></div>
              </div>

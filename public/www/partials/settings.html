@@ -1,0 +1,17 @@
+<ion-header-bar class='bar-stable navbar'>
+  <h1 class='title'>Settings</h1>
+  <a href="/"><i class='icon ion-chevron-left nav-icon'></i></a>
+</ion-header-bar>
+<ion-content>
+  <h1>Hi, {{firstName}}!</h1>
+  <h2>Edit Setting</h2>
+  <form ng-submit='user.update()'>
+    <label class="item item-input">
+      <span class="input-label">First Name</span>
+      <input type="text" ng-model="firstName">
+    </label>
+    <ion-toggle ng-model='notify' ng-checked='habit.notify' toggle-class='toggle-calm'>Notifications</ion-toggle>
+    <ion-toggle ng-model='notify' ng-checked='{{notify}}' toggle-class='toggle-calm'>Receive Media</ion-toggle>
+    <button type="submit" class="button button-main">Update Settings</button>
+  </form>
+</ion-content>
