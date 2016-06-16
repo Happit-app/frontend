@@ -6,16 +6,16 @@
     .factory("HabitsServices", HabitsServices);
 
   function HabitsServices($http) {
-    const api = 'https://hapit-app.herokuapp.com';
+    const api = 'http://localhost:3000';
 
     return {
-      completeTask: function(completion) {
-        return $http.post(api + '/habits/success', completion).then( (data)=> {
+      completeTask: function(habit_id, date) {
+        return $http.post(api + '/habits/' + habit_id + '/success', {date: date}).then( (data)=> {
           return data;
         });
       },
-      undoTask: function(id) {
-        return $http.delete(api + '/habits/success/' + id).then( (data) => {
+      undoTask: function(habit_id, date) {
+        return $http.delete(api + '/habits/' + habit_id + '/success/' + date.toISOString()).then( (data) => {
           return data;
         });
       },
@@ -33,7 +33,8 @@
         return $http.get(api + '/habits/' + id).then(function(data) {
           if (data.data.dates) {
             data.data.dates = data.data.dates.map(function(date) {
-              return new Date(date);
+              var newDate = date.substr(0, 10).split('-');
+              return new Date(newDate[0], newDate[1] - 1, newDate[2]);
             });
           }
           return data.data;

@@ -23,14 +23,36 @@
         for (var i = 0; i < ctrl.habit.dates.length; i++) {
           var currentDate = ctrl.habit.dates[i];
           if (currentDate.getFullYear() === date.getFullYear() && currentDate.getMonth() === date.getMonth() && currentDate.getDate() === date.getDate()) {
-            return '<div class="completedDay"></div>'
+            return '<div class="completedDay"></div>';
           }
         }
       }
+      return '<div></div>';
     };
 
     this.dayClick = function(date) {
-      console.log(date);
+      var habit_id = ctrl.habit.id;
+      var habitDates = ctrl.habit.dates;
+
+      if (habitDates) {
+        for (var i = 0; i < habitDates.length; i++) {
+          var currentDate = habitDates[i];
+          if (currentDate.getFullYear() === date.getFullYear() && currentDate.getMonth() === date.getMonth() && currentDate.getDate() === date.getDate()) {
+            habitDates.splice(i, 1);
+            ctrl.rerenderCal();
+            HabitsServices.undoTask(habit_id, date);
+            return;
+          }
+        }
+      }
+
+      habitDates.push(date);
+      ctrl.rerenderCal();
+      HabitsServices.completeTask(habit_id, date);
+    }
+
+    this.rerenderCal = function() {
+      angular.element(document.querySelector('calendar-md')).scope().$$childHead._$$bootstrap();
     }
 
     this.addHabit = function(habit, time) {
