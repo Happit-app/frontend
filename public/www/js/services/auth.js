@@ -1,25 +1,29 @@
-(function(){
-    angular
-    .module("happit")
-    .factory("AuthServices", AuthServices);
+(function() {
+  angular
+  .module("happit")
+  .factory("AuthServices", AuthServices);
 
-    AuthServices.$inject = ['$http'];
+  AuthServices.$inject = ['$http'];
 
-    function AuthServices($http) {
+  function AuthServices($http) {
 
-        var auth_rte = 'hapit-app.herokuapp.com/auth/login';
+      var auth_rte = '';
 
-        function fb_exc(endpoint, token) {
-          return $http.get( endpoint, { params: { access_token: token, format: "json" }});
-        }
+      function fb_exc(token) {
+        return $http({
+          url: auth_rte,
+          data: {token: token},
+          method: 'POST'
+        }).then(function(success) {
+          return success;
+        }, function (err) {
+          return err;
+        });
+      }
 
-        function login(user) {
-          return $http.get( auth_rte, { params: { login: user.data }});
-        }
+      return {
+        fb_exc
+      }
+  };
 
-        return {
-          fb_exc,
-          login
-        }
-    };
 })();
