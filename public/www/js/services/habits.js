@@ -23,13 +23,24 @@
         });
       },
       editHabit: function(habit, time) {
-        return $http.put(api + 'habits/', habit).then( (data)=> {
+        return $http.put(api + 'habits/:id/update', habit).then( (data)=> {
+          console.log(data);
           return data;
-        }
+        });
       },
       addHabit: function(habit) {
         return $http.post(api + 'habits', habit).then( (data) => {
            return data;
+        });
+      },
+      getHabit: function(id) {
+        $http.get(api + 'habits/:id').then( (data) => {
+          return data;
+        });
+      },
+      deleteHabit: function(id) {
+        $http.delete(api + 'habits/:id/delete').then( (data) => {
+          return data;
         });
       }
     };
