@@ -30,7 +30,23 @@
     };
 
     this.dayClick = function(date) {
-      console.log(date);
+      var habit_id = ctrl.habit.id;
+      var habitDates = ctrl.habit.dates;
+      var count = 0;
+
+      if (habitDates) {
+        for (var i = 0; i < habitDates.length; i++) {
+          var currentDate = ctrl.habit.dates[i];
+          if (currentDate.getFullYear() === date.getFullYear() && currentDate.getMonth() === date.getMonth() && currentDate.getDate() === date.getDate()) {
+            HabitsServices.undoTask(habit_id, date);
+            count++;
+          }
+        }
+      }
+
+      if (count !== 1) {
+        HabitsServices.completeTask(habit_id, date);
+      }
     }
 
     this.addHabit = function(habit, time) {
