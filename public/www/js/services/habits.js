@@ -20,22 +20,32 @@ function HabitsServices($http) {
         });
       },
       editHabit: function(habit, time) {
-        return $http.put(api + 'habits/:id/update', habit).then( (data)=> {
+        return $http.put(api + '/habits/:id/update', habit).then( (data)=> {
           return data;
         });
       },
       addHabit: function(habit) {
-        return $http.post(api + 'habits', habit).then( (data) => {
+        return $http.post(api + '/habits', habit).then( (data) => {
            return data;
         });
       },
       getHabit: function(id) {
-        $http.get(api + 'habits/' + id).then( (data) => {
-          return data;
+        return $http.get(api + '/habits/' + id).then(function(data) {
+          if (data.data.dates) {
+            data.data.dates = data.data.dates.map(function(date) {
+              return new Date(date);
+            });
+          }
+          return data.data;
+        });
+      },
+      getAllHabits: function(user_id) {
+        return $http.get(api + '/users/' + user_id + '/habits').then(function(data) {
+          return data.data;
         });
       },
       deleteHabit: function(id) {
-        $http.delete(api + 'habits/' + id + '/delete').then( (data) => {
+        $http.delete(api + '/habits/' + id + '/delete').then( (data) => {
           return data;
         });
       }

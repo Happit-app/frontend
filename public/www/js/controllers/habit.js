@@ -5,26 +5,33 @@
     .module('happit')
     .controller('HabitCtrl', HabitCtrl);
 
-    HabitCtrl.$inject = ['HabitsServices', 'ionicTimePicker','$state', '$stateParams'];
+  HabitCtrl.$inject = ['HabitsServices', 'ionicTimePicker','$state', '$stateParams'];
 
-function HabitCtrl(HabitsServices, ionicTimePicker, $state, $stateParams) {
-  var ctrl = this;
-  this.time;
+  function HabitCtrl(HabitsServices, ionicTimePicker, $state, $stateParams) {
+    var ctrl = this;
+    this.time;
+    this.service = HabitsServices;
 
-    this.getHabit = function(id) {
-      HabitsServices.getHabit(id).then( (habit) => {
-        return habit;
-      }).catch( (err) => {
-        console.log(err);
-      })
+    this.service.getHabit($stateParams.id).then(function(data) {
+      ctrl.habit = data;
+    }).catch(function(err) {
+      console.log(err);
+    });
+
+    this.setDayContent = function(date) {
+      if (ctrl.habit && ctrl.habit.dates) {
+        for (var i = 0; i < ctrl.habit.dates.length; i++) {
+          var currentDate = ctrl.habit.dates[i];
+          if (currentDate.getFullYear() === date.getFullYear() && currentDate.getMonth() === date.getMonth() && currentDate.getDate() === date.getDate()) {
+            return '<div class="completedDay"></div>'
+          }
+        }
+      }
+    };
+
+    this.dayClick = function(date) {
+      console.log(date);
     }
-  this.habit = this.service.getHabit($stateParams.id);
-  console.log(this.habit);
-
-  this.setDayContent = function(date) {
-    // if date is present in list of habit's completed days
-    return '<div class="completedDay"></div>'
-  };
 
     this.addHabit = function(habit, time) {
       habit.time = time;
