@@ -6,7 +6,7 @@
     .factory("HabitsServices", HabitsServices);
 
 function HabitsServices($http) {
-    const api = 'http://localhost:3000/';
+    const api = 'https://hapit-app.herokuapp.com';
 
     return {
       completeTask: function(completion) {
@@ -45,7 +45,7 @@ function HabitsServices($http) {
         });
       },
       deleteHabit: function(id) {
-        $http.delete(api + '/habits/' + id + '/delete').then( (data) => {
+        return $http.delete(api + '/habits/' + id + '/delete').then( (data) => {
           return data;
         });
       }
