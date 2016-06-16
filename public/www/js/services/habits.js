@@ -6,7 +6,7 @@
     .factory("HabitsServices", HabitsServices);
 
 function HabitsServices($http) {
-    const api = 'https://hapit-app.herokuapp.com';
+    const api = 'http://localhost:3000';
 
     return {
       completeTask: function(habit_id, date) {
