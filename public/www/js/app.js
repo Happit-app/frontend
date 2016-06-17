@@ -14,17 +14,17 @@
       $urlRouterProvider.otherwise('/');
 
       $stateProvider
-        .state('login', {
+        .state('home', {
           url: '/',
+          templateUrl: 'partials/home.html',
+          controller: 'HabitsCtrl as ctrl',
+          restricted: false
+        })
+        .state('login', {
+          url: '/login',
           templateUrl: 'partials/login.html',
           controller: 'AuthCtrl as ctrl',
           preventWhenLoggedIn: true
-        })
-        .state('home', {
-          url: '/home',
-          templateUrl: 'partials/home.html',
-          controller: 'HabitsCtrl as ctrl',
-          restricted: true
         })
         .state('settings', {
           url: '/settings',
@@ -73,7 +73,7 @@
             $location.path('/login');
         }
         else if (next.preventWhenLoggedIn && $window.localStorage.getItem("token")) {
-          $location.path('/members');
+          $location.path('/home');
         }
 
       });

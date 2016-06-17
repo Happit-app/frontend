@@ -6,3 +6,4 @@ platforms/
 plugins/
 bower_components
 lib/
+.idea/

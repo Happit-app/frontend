@@ -7,7 +7,7 @@
 
   function AuthServices($http) {
 
-      var auth_rte = '';
+      var auth_rte = '10.0.2.2:3000/login';
 
       function fb_exc(token) {
         return $http({
