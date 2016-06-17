@@ -15,6 +15,7 @@
 
     this.labels = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     this.data = [3, 5, 10, 7, 1, 20, 12];
+    this.colors = ['#00BCD4', '#0091EA', '#CDDC39', '#26A69A', '#2E7D32', '#8BC34A', '#01579B'];
 
     this.service.getHabit($stateParams.id).then(function(data) {
       ctrl.habit = data;

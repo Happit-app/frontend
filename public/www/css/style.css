@@ -126,6 +126,11 @@
   position: absolute;
 }
 
+.chart-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 /* FORM STYLES */
 
 .time-picker {

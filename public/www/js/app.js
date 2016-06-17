@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('happit', ['ionic', 'ui.router', 'ngCordova', 'ngCordovaOauth', 'ionic-timepicker', 'chartjs', 'ngMaterial', 'materialCalendar'])
+    .module('happit', ['ionic', 'ui.router', 'ngCordova', 'ngCordovaOauth', 'ionic-timepicker', 'chart.js', 'ngMaterial', 'materialCalendar'])
     .config(routeHandler)
     .run(runBlock);
 
