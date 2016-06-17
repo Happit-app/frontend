@@ -39,7 +39,7 @@
           controller: 'HabitCtrl as ctrl'
         })
         .state('edit', {
-          url: '/edit',
+          url: '/edit/:id',
           templateUrl: 'partials/edit.html',
           controller: 'HabitCtrl as ctrl'
         })

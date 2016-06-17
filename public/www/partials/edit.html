@@ -3,34 +3,34 @@
     <a href="/"><i class='icon ion-chevron-left nav-icon'></i></a>
 </ion-header-bar>
 <ion-content>
-  <form ng-submit='ctrl.editHabit(habit, ctrl.time)'>
+  <form ng-submit='ctrl.editHabit(habit)'>
     <label class="item item-input">
       <span class="input-label">Title</span>
-      <input type="text" ng-model="habit.title">
+      <input type="text" ng-model="ctrl.habit.title">
     </label>
     <label class="item item-input">
       <span class="input-label">Description</span>
-      <input type="text" ng-model="habit.desc">
+      <input type="text" ng-model="ctrl.habit.desc">
     </label>
     <div class='notify'>
       <div class='item item-toggle'>
         Notifications
         <label class="toggle toggle-success">
-          <input type="checkbox" ng-model="habit.sun">
+          <input type="checkbox" ng-model="ctrl.habit.notify" >
           <div class="track">
             <div class="handle"></div>
           </div>
         </label>
       </div>
-      <div class='button' ng-model='habit.time' value='ctrl.time' ng-click='ctrl.openTimePicker()'>
-        <p>Reminder Time:   {{ ctrl.time || "set time here" }}</p>
+      <div class='button' ng-model='ctrl.habit.time' ng-click='ctrl.openTimePicker()'>
+        <p>Reminder Time:   {{ ctrl.habit.time || "set time here" }}</p>
       </div>
     </div>
     <ul class="list">
       <li class="item item-toggle">
          Sunday
          <label class="toggle toggle-success">
-           <input type="checkbox" ng-model="habit.sun">
+           <input type="checkbox" ng-model="ctrl.habit.sun">
            <div class="track">
              <div class="handle"></div>
            </div>
@@ -39,7 +39,7 @@
       <li class="item item-toggle">
          Monday
          <label class="toggle toggle-success">
-           <input type="checkbox" ng-model="habit.mon">
+           <input type="checkbox" ng-model="ctrl.habit.mon">
            <div class="track">
              <div class="handle"></div>
            </div>
@@ -48,7 +48,7 @@
       <li class="item item-toggle">
          Tuesday
          <label class="toggle toggle-success">
-           <input type="checkbox" ng-model="habit.tue">
+           <input type="checkbox" ng-model="ctrl.habit.tue">
            <div class="track">
              <div class="handle"></div>
            </div>
@@ -57,7 +57,7 @@
       <li class="item item-toggle">
          Wednesday
          <label class="toggle toggle-success">
-           <input type="checkbox" ng-model="habit.wed">
+           <input type="checkbox" ng-model="ctrl.habit.wed">
            <div class="track">
              <div class="handle"></div>
            </div>
@@ -66,7 +66,7 @@
       <li class="item item-toggle">
          Thursday
          <label class="toggle toggle-success">
-           <input type="checkbox" ng-model="habit.thu">
+           <input type="checkbox" ng-model="ctrl.habit.thu">
            <div class="track">
              <div class="handle"></div>
            </div>
@@ -75,7 +75,7 @@
       <li class="item item-toggle">
          Friday
          <label class="toggle toggle-success">
-           <input type="checkbox" ng-model="habit.fri">
+           <input type="checkbox" ng-model="ctrl.habit.fri">
            <div class="track">
              <div class="handle"></div>
            </div>
@@ -84,7 +84,7 @@
       <li class="item item-toggle">
          Saturday
          <label class="toggle toggle-success">
-           <input type="checkbox" ng-model="habit.sat">
+           <input type="checkbox" ng-model="ctrl.habit.sat">
            <div class="track">
              <div class="handle"></div>
            </div>
