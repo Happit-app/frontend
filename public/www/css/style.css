@@ -161,6 +161,10 @@
   background-color: #999;
 }
 
+.bottom-button {
+  margin-bottom: 30px;
+}
+
 input {
   text-align: right;
 }
