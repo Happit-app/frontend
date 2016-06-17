@@ -5,17 +5,17 @@
     .module('happit')
     .controller('HabitCtrl', HabitCtrl);
 
-  HabitCtrl.$inject = ['HabitsServices', 'ionicTimePicker','$state', '$stateParams', '$scope','$cordovaLocalNotification', '$ionicPlatform', '$rootScope'];
+  HabitCtrl.$inject = ['HabitsServices', 'ionicTimePicker','$state', '$stateParams', '$scope','$cordovaLocalNotification', '$ionicPlatform', '$rootScope', '$location'];
 
-  function HabitCtrl(HabitsServices, ionicTimePicker, $state, $stateParams, $scope, $cordovaLocalNotification, $ionicPlatform, $rootScope) {
+  function HabitCtrl(HabitsServices, ionicTimePicker, $state, $stateParams, $scope, $cordovaLocalNotification, $ionicPlatform, $rootScope, $location) {
     var ctrl = this;
     this.time;
     this.service = HabitsServices;
     this.scheduleArr = [];
 
     this.service.getHabit($stateParams.id).then(function(data) {
-      console.log($stateParams.id)
       ctrl.habit = data;
+      ctrl.time = ctrl.habit.time;
     }).catch(function(err) {
       console.log(err);
     });
@@ -29,7 +29,7 @@
           }
         }
       }
-      return '';
+      return '<div></div>';
     };
 
     this.dayClick = function(date) {
@@ -121,23 +121,19 @@
     //   }
     // });
 
-    this.editHabit = function(habit, time) {
-      habit.time = time;
-      habit.user_id = 2;
-
-      // if(habit.notify) {
-      //   if(scheduleArr.length) {
-      //     for(var j = 0; j < scheduleArr.length; j++) {
-      //       if(scheduleArr[i].id === habit.id) {
-      //         scheduleArr.splice(i, 1);
-      //       }
-      //     }
-      //   }
-      //   ctrl.createSchedule(habit);
-      // }
-
-      HabitsServices.editHabit(habit, time).then( function() {
-        $state.go();
+this.editHabit = function(habit) {
+      HabitsServices.editHabit(ctrl.habit, ctrl.habit.time).then( function() {
+        // if(habit.notify) {
+        //   if(scheduleArr.length) {
+        //     for(var j = 0; j < scheduleArr.length; j++) {
+        //       if(scheduleArr[i].id === habit.id) {
+        //         scheduleArr.splice(i, 1);
+        //       }
+        //     }
+        //   }
+        //   ctrl.createSchedule(habit);
+        // }
+        $state.go('home');
       }).catch( function(err) {
         console.log(err);
       });
@@ -185,8 +181,14 @@
             } else {
                min = selectedTime.getUTCMinutes()
             }
-            ctrl.time = hour + ":" + min;
-            this.time = ctrl.time;
+
+            if (ctrl.habit) {
+              ctrl.habit.time = hour + ":" + min;
+            }
+            else {
+              ctrl.time = hour + ':' + min;
+            }
+            // this.time = ctrl.habit.time || ctrl.time;
           }
         },
         inputTime: 50400,

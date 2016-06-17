@@ -13,7 +13,7 @@ function HabitsCtrl(HabitsServices) {
   this.month= ctrl.date.getMonth();
   this.day = ctrl.date.getDate();
 
-  this.user_id = 4;
+  this.user_id = 2;
 
   this.service.getAllHabits(ctrl.user_id).then(function(data) {
     data.map(function(habit) {
