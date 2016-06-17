@@ -6,7 +6,7 @@
     .factory("HabitsServices", HabitsServices);
 
 function HabitsServices($http) {
-    var api = 'http://localhost:3000';
+    var api = 'http://10.0.2.2:3000';
 
     return {
       completeTask: function(habit_id, date) {
