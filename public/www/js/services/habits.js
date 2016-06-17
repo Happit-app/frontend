@@ -20,7 +20,7 @@ function HabitsServices($http) {
         });
       },
       editHabit: function(habit, time) {
-        return $http.put(api + '/habits/:id/update', habit).then( (data)=> {
+        return $http.put(api + '/habits/' + habit.id + '/update', habit).then( (data)=> {
           return data;
         });
       },
