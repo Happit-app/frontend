@@ -65,7 +65,13 @@
 
       habitDates.push(date);
       ctrl.rerenderCal();
-      ctrl.data[index]++;
+      if(ctrl.data) {
+        ctrl.data[index]++;
+      }
+      else {
+        ctrl.data = [0, 0, 0, 0, 0, 0, 0];
+        ctrl.data[index]++;
+      }
       HabitsServices.completeTask(habit_id, date);
     };
 
