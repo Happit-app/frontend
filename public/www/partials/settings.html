@@ -5,13 +5,13 @@
 <ion-content>
   <form ng-submit='user.update(user)'>
     <label class="item item-input">
-      <span class="input-label">First Name: {{user.firstName}}</span>
+      <span class="input-label">First Name</span>
       <input type="text" ng-model="user.firstName">
     </label>
     <div class='item item-toggle'>
       Notifications
       <label class="toggle toggle-success">
-        <input type="checkbox" ng-model="habit.sun">
+        <input type="checkbox" ng-model="user.notify">
         <div class="track">
           <div class="handle"></div>
         </div>
@@ -20,12 +20,14 @@
     <div class='item item-toggle'>
       Media
       <label class="toggle toggle-success">
-        <input type="checkbox" ng-model="habit.sun">
+        <input type="checkbox" ng-model="user.media">
         <div class="track">
           <div class="handle"></div>
         </div>
       </label>
     </div>
-    <button type="submit" class="button button-main">Update Settings</button>
+    <div class="button-container">
+      <button type="submit" class="button button-main button-block">Update Settings</button>
+    </div>
   </form>
 </ion-content>

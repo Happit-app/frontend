@@ -48,7 +48,8 @@
         }
       }
 
-      habitDates.push(date);
+      // habitDates.push(date);
+      ctrl.habit.dates = [date];
       ctrl.rerenderCal();
       HabitsServices.completeTask(habit_id, date);
     };
@@ -99,12 +100,13 @@
       //   ctrl.createSchedule(habit);
       // }
 
-      HabitsServices.addHabit(habit).then( function() {
+      HabitsServices.addHabit(habit).then(function() {
         $state.go('home');
-      }).catch( function(err) {
+      }).catch(function(err) {
         console.log(err);
       });
     };
+
 
     // $ionicPlatform.ready( function() {
     //   if(ionic.Platform.isWebView) {
@@ -121,7 +123,7 @@
     //   }
     // });
 
-this.editHabit = function(habit) {
+    this.editHabit = function(habit) {
       HabitsServices.editHabit(ctrl.habit, ctrl.habit.time).then( function() {
         // if(habit.notify) {
         //   if(scheduleArr.length) {
@@ -139,12 +141,10 @@ this.editHabit = function(habit) {
       });
     };
 
-    this.deleteHabit = function(habit, time) {
-      // ctrl.scheduleArr = [];
-
-      HabitsServices.deleteHabit(id).then( function() {
+    this.deleteHabit = function(habit_id) {
+      HabitsServices.deleteHabit(habit_id).then( () => {
         $state.go('home');
-      }).catch( function(err)  {
+      }).catch(function(err) {
         console.log(err);
       });
     };
@@ -152,7 +152,7 @@ this.editHabit = function(habit) {
     this.completeTask = function(habit) {
       HabitsServices.completeTask(habit).then( function(data) {
         return data;
-      }).catch( function(err) {
+      }).catch(function(err) {
         console.log(err);
       });
     };
@@ -160,7 +160,7 @@ this.editHabit = function(habit) {
     this.undoTask = function(id) {
       HabitsServices.undoTask(id).then( function() {
         $state.go('habits');
-      }).catch( function(err) {
+      }).catch(function(err) {
         console.log(err);
       });
     };
@@ -169,7 +169,7 @@ this.editHabit = function(habit) {
       var min;
 
       var ipObj1 = {
-        callback: function (val) {
+        callback: function(val) {
           if (typeof (val) === 'undefined') {
             console.log('Time not selected');
           } else {

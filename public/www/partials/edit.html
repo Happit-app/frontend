@@ -22,8 +22,8 @@
           </div>
         </label>
       </div>
-      <div class='button' ng-model='ctrl.habit.time' ng-click='ctrl.openTimePicker()'>
-        <p>Reminder Time:   {{ ctrl.habit.time || "set time here" }}</p>
+      <div class='button time-picker' ng-model='ctrl.habit.time' ng-click='ctrl.openTimePicker()'>
+        <p>Reminder Time<span class="enter-time">{{ ctrl.habit.time || "set time here" }}</span></p>
       </div>
     </div>
     <ul class="list">
@@ -91,6 +91,11 @@
          </label>
       </li>
     </ul>
-    <button type="submit" class="button button-main">Update Habit</button>
+    <div class="button-container">
+      <button type="submit" class="button button-main button-block">Update</button>
+    </div>
   </form>
+  <div class="button-container">
+    <button class="button button-delete button-main button-block bottom-button" ng-click="ctrl.deleteHabit(ctrl.habit.id)">Delete</button>
+  </div>
 </ion-content>

@@ -128,6 +128,46 @@
 
 /* FORM STYLES */
 
+.time-picker {
+  width: 100%;
+  text-align: left;
+  padding: 5px 16px 5px 15px;
+  background-color: #fff;
+  margin-bottom: -10px;
+}
+
+.enter-time {
+  float: right;
+}
+
+.ionic_timepicker_popup .popup-body .heading {
+  background-color: #00BCD4;
+}
+
+.ionic_timepicker_popup .popup-buttons button {
+  background-color: #00BCD4;
+}
+
+.button-container {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.button-container button:hover, .button-container button:focus, .button-container button:active {
+  color: #fff;
+}
+
+.button-delete {
+  background-color: #999;
+}
+
+.bottom-button {
+  margin-bottom: 30px;
+}
+
+input {
+  text-align: right;
+}
 
 /* LOGIN STYLES */
 
