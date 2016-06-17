@@ -18,7 +18,7 @@
         AuthServices.fb_exc(result.access_token)
         .then(function(profile){
           console.log(profile);
-          UserServices.current(profile.user, profile.token);
+          UserServices.current(JSON.stringify(profile.data.user), profile.data.token);
           $location.path('/')
         })
         .catch(function() {

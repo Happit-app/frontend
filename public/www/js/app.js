@@ -4,6 +4,9 @@
   angular
     .module('happit', ['ionic', 'ui.router', 'ngCordova', 'ngCordovaOauth', 'ionic-timepicker', 'chart.js', 'ngMaterial', 'materialCalendar'])
     .config(routeHandler)
+    .config(function($mdGestureProvider) {
+      $mdGestureProvider.skipClickHijack();
+    })
     .run(runBlock);
 
     routeHandler.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider']

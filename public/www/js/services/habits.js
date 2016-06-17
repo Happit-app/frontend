@@ -5,7 +5,7 @@
     .module("happit")
     .factory("HabitsServices", HabitsServices);
 
-function HabitsServices($http) {
+function HabitsServices($http, $window, $q) {
     var api = 'https://hapit-app.herokuapp.com';
 
     return {
@@ -25,6 +25,7 @@ function HabitsServices($http) {
         });
       },
       addHabit: function(habit) {
+        console.log('habits-service')
         return $http.post(api + '/habits', habit).then( function(data) {
            return data;
         });
@@ -57,6 +58,11 @@ function HabitsServices($http) {
         return $http.delete(api + '/habits/' + id + '/delete').then( function(data) {
           return data;
         });
+      },
+      getUserID: function() {
+        var user = $window.localStorage.getItem('user');
+        user = JSON.parse(user);
+        return user.id;
       }
     };
   };
