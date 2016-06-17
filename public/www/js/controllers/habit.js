@@ -48,7 +48,8 @@
         }
       }
 
-      habitDates.push(date);
+      // habitDates.push(date);
+      ctrl.habit.dates = [date];
       ctrl.rerenderCal();
       HabitsServices.completeTask(habit_id, date);
     };
@@ -101,14 +102,14 @@
         ctrl.createSchedule(habit);
       }
 
-      HabitsServices.addHabit(habit).then( () => {
+      HabitsServices.addHabit(habit).then(function() {
         $state.go('home');
-      }).catch( (err) => {
+      }).catch(function(err) {
         console.log(err);
       });
     };
 
-    $ionicPlatform.ready( function() {
+    $ionicPlatform.ready(function() {
       if(ionic.Platform.isWebView) {
         $scope.MultipleNotifications = function() {
           $cordovaLocalNotification.schedule(scheduleArr)
@@ -125,7 +126,7 @@
     this.editHabit = function(habit) {
       HabitsServices.editHabit(ctrl.habit, ctrl.habit.time).then( ()=> {
         $state.go('home');
-      }).catch( (err) => {
+      }).catch(function(err) {
         console.log(err);
       });
     };
@@ -133,7 +134,7 @@
     this.deleteHabit = function(habit_id) {
       HabitsServices.deleteHabit(habit_id).then( () => {
         $state.go('home');
-      }).catch( (err) => {
+      }).catch(function(err) {
         console.log(err);
       });
     };
@@ -141,7 +142,7 @@
     this.completeTask = function(habit) {
       HabitsServices.completeTask(habit).then( (data)=> {
         return data;
-      }).catch( (err) => {
+      }).catch(function(err) {
         console.log(err);
       });
     };
@@ -149,7 +150,7 @@
     this.undoTask = function(id) {
       HabitsServices.undoTask(id).then( () => {
         $state.go('habits');
-      }).catch( (err) => {
+      }).catch(function(err) {
         console.log(err);
       });
     };
@@ -158,7 +159,7 @@
       var min;
 
       var ipObj1 = {
-        callback: function (val) {
+        callback: function(val) {
           if (typeof (val) === 'undefined') {
             console.log('Time not selected');
           } else {
