@@ -130,8 +130,8 @@
       });
     };
 
-    this.deleteHabit = function(habit, time) {
-      HabitsServices.deleteHabit(id).then( () => {
+    this.deleteHabit = function(habit_id) {
+      HabitsServices.deleteHabit(habit_id).then( () => {
         $state.go('home');
       }).catch( (err) => {
         console.log(err);
