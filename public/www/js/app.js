@@ -18,7 +18,7 @@
           url: '/',
           templateUrl: 'partials/home.html',
           controller: 'HabitsCtrl as ctrl',
-          restricted: false
+          restricted: true, 
         })
         .state('login', {
           url: '/login',
