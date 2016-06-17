@@ -4,7 +4,11 @@
   <a ng-href="/#/edit/{{ctrl.habit.id}}"><i class='icon ion-edit settings-icon'></i></a>
 </ion-header-bar>
 <ion-content>
-  <p>{{ctrl.habit.desc}}</p>
+  <div class="card">
+    <div class="item item-text-wrap">
+      {{ctrl.habit.desc}}
+    </div>
+  </div>
 
   <div class="calendar-container" ng-if="ctrl.habit">
     <calendar-md flex layout layout-fill
@@ -20,5 +24,9 @@
     disable-future-selection="true"
     ></calendar-md>
   </div>
+
+  <canvas id="doughnut" class="chart chart-doughnut"
+    chart-data="data" chart-labels="labels">
+  </canvas>
 
 </ion-content>

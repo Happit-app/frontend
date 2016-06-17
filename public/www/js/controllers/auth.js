@@ -25,6 +25,4 @@ function AuthCtrl($cordovaOauth, $http) {
           console.log(JSON.stringify(error));
         });
   }
-
-  this.service = AuthServices;
 }

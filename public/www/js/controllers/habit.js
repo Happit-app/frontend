@@ -13,6 +13,9 @@
     this.service = HabitsServices;
     this.scheduleArr = [];
 
+    this.labels = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    this.data = [3, 5, 10, 7, 1, 20, 12];
+
     this.service.getHabit($stateParams.id).then(function(data) {
       ctrl.habit = data;
       ctrl.time = ctrl.habit.time;
@@ -34,7 +37,8 @@
 
     this.dayClick = function(date) {
       var habit_id = ctrl.habit.id;
-      var habitDates = ctrl.habit.dates || [];
+      ctrl.habit.dates = ctrl.habit.dates || [];
+      var habitDates = ctrl.habit.dates;
 
       if (habitDates.length) {
         for (var i = 0; i < habitDates.length; i++) {
@@ -48,8 +52,7 @@
         }
       }
 
-      // habitDates.push(date);
-      ctrl.habit.dates = [date];
+      habitDates.push(date);
       ctrl.rerenderCal();
       HabitsServices.completeTask(habit_id, date);
     };
@@ -142,7 +145,7 @@
     };
 
     this.deleteHabit = function(habit_id) {
-      HabitsServices.deleteHabit(habit_id).then( () => {
+      HabitsServices.deleteHabit(habit_id).then(function() {
         $state.go('home');
       }).catch(function(err) {
         console.log(err);
@@ -150,7 +153,7 @@
     };
 
     this.completeTask = function(habit) {
-      HabitsServices.completeTask(habit).then( function(data) {
+      HabitsServices.completeTask(habit).then(function(data) {
         return data;
       }).catch(function(err) {
         console.log(err);
