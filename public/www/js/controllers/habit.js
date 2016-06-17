@@ -11,7 +11,7 @@
     var ctrl = this;
     this.time;
     this.service = HabitsServices;
-    this.scheduleArr= [];
+    this.scheduleArr = [];
 
     this.service.getHabit($stateParams.id).then(function(data) {
       ctrl.habit = data;
@@ -57,99 +57,110 @@
       angular.element(document.querySelector('calendar-md')).scope().$$childHead._$$bootstrap();
     };
 
-    this.createSchedule = function(habit) {
-
-      var days = [habit.sun, habit.mon, habit.tue, habit.wed, habit.thu, habit.fri, habit.sat];
-
-      for (var i = 0; i < days.length; i++) {
-
-        if(days[i]) {
-          var hours = habit.time.slice(0,2);
-          var mins = habit.time.substring(5, 2);
-          var amPm;
-
-          if(hours - 12 >= 0) {
-            hours = (hours - 12);
-            amPm = 'pm';
-          } else {
-            amPm = 'am';
-            mins = ':' + mins;
-          }
-
-        var dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-
-        var Day = new Object();
-
-        Day.id = i,
-        Day.title = 'Happit Check-In',
-        Day.text = 'Hi, ' + habit.firstName + '! Did you complete your healthy habit today?',
-        Day.firstAt = dayNames[i] + '_at_' + hours + mins + '_' + amPm,
-        Day.every = 'week',
-        Day.ongoing = true
-
-        ctrl.scheduleArr.push(Day);
-        }
-      }
-      console.log(ctrl.scheduleArr);
-    }
+    // this.createSchedule = function(habit) {
+    //   var days = [habit.sun, habit.mon, habit.tue, habit.wed, habit.thu, habit.fri, habit.sat];
+    //
+    //   for (var i = 0; i < days.length; i++) {
+    //     if(days[i]) {
+    //       var hours = habit.time.slice(0,2);
+    //       var mins = habit.time.substring(5, 2);
+    //       var amPm;
+    //
+    //       if(hours - 12 >= 0) {
+    //         hours = (hours - 12);
+    //         amPm = 'pm';
+    //       } else {
+    //         amPm = 'am';
+    //         mins = ':' + mins;
+    //       }
+    //
+    //     var dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+    //
+    //     var Day = new Object();
+    //
+    //     Day.id = habit.id,
+    //     Day.title = 'Happit Check-In',
+    //     Day.text = 'Hi, ' + habit.firstName + '! Did you complete your healthy habit today?',
+    //     Day.firstAt = dayNames[i] + '_at_' + hours + mins + '_' + amPm,
+    //     Day.every = 'week',
+    //     Day.ongoing = true
+    //
+    //     ctrl.scheduleArr.push(Day);
+    //     }
+    //   }
+    //   ctrl.scheduler();
+    // }
 
     this.addHabit = function(habit, time) {
       habit.time = time;
       habit.user_id = 2;
 
-      if(habit.notify) {
-        ctrl.createSchedule(habit);
-      }
+      // if(habit.notify) {
+      //   ctrl.createSchedule(habit);
+      // }
 
-      HabitsServices.addHabit(habit).then( () => {
+      HabitsServices.addHabit(habit).then( function() {
         $state.go('home');
-      }).catch( (err) => {
+      }).catch( function(err) {
         console.log(err);
       });
     };
 
-    $ionicPlatform.ready( function() {
-      if(ionic.Platform.isWebView) {
-        $scope.MultipleNotifications = function() {
-          $cordovaLocalNotification.schedule(scheduleArr)
-            .then(function(result) {
-              alert('Notifications sent!');
-          });
-        };
-        $rootScope.$on($cordovaLocalNotification.onclick = function (event, notification, json) {
-          $state.go('home');
-        });
-      }
-    });
+    // $ionicPlatform.ready( function() {
+    //   if(ionic.Platform.isWebView) {
+    //     ctrl.scheduler = function(){
+    //       $cordovaLocalNotification.schedule(ctrl.scheduleArr)
+    //         .then(function(result) {
+    //           alert('Notifications sent!');
+    //       });
+    //     }
+    //     console.log('hi!');
+    //     $rootScope.$on($cordovaLocalNotification.onclick = function (event, notification, json) {
+    //       $state.go('home');
+    //     });
+    //   }
+    // });
 
-    this.editHabit = function(habit) {
-      HabitsServices.editHabit(ctrl.habit, ctrl.habit.time).then( ()=> {
+this.editHabit = function(habit) {
+      HabitsServices.editHabit(ctrl.habit, ctrl.habit.time).then( function() {
+        // if(habit.notify) {
+        //   if(scheduleArr.length) {
+        //     for(var j = 0; j < scheduleArr.length; j++) {
+        //       if(scheduleArr[i].id === habit.id) {
+        //         scheduleArr.splice(i, 1);
+        //       }
+        //     }
+        //   }
+        //   ctrl.createSchedule(habit);
+        // }
         $state.go('home');
-      }).catch( (err) => {
+      }).catch( function(err) {
         console.log(err);
       });
     };
 
     this.deleteHabit = function(habit, time) {
-      HabitsServices.deleteHabit(id).then( () => {
+      // ctrl.scheduleArr = [];
+
+      HabitsServices.deleteHabit(id).then( function() {
         $state.go('home');
-      }).catch( (err) => {
+      }).catch( function(err)  {
         console.log(err);
       });
     };
 
     this.completeTask = function(habit) {
-      HabitsServices.completeTask(habit).then( (data)=> {
+      HabitsServices.completeTask(habit).then( function(data) {
         return data;
-      }).catch( (err) => {
+      }).catch( function(err) {
         console.log(err);
       });
     };
 
     this.undoTask = function(id) {
-      HabitsServices.undoTask(id).then( () => {
+      HabitsServices.undoTask(id).then( function() {
         $state.go('habits');
-      }).catch( (err) => {
+      }).catch( function(err) {
         console.log(err);
       });
     };
