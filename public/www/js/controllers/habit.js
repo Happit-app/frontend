@@ -14,7 +14,7 @@
     this.scheduleArr = [];
 
     this.labels = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    this.colors = ['#00BCD4', '#0091EA', '#CDDC39', '#26A69A', '#2E7D32', '#8BC34A', '#01579B'];
+    this.colors = ['#536DFE', '#0091EA', '#CDDC39', '#8BC34A', '#2E7D32', '#26A69A', '#01579B'];
 
     this.service.getHabit($stateParams.id).then(function(data) {
       ctrl.habit = data;
