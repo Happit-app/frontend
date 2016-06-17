@@ -6,7 +6,7 @@
     .factory("HabitsServices", HabitsServices);
 
 function HabitsServices($http) {
-    const api = 'http://localhost:3000';
+    var api = 'http://localhost:3000';
 
     return {
       completeTask: function(habit_id, date) {
@@ -20,7 +20,7 @@ function HabitsServices($http) {
         });
       },
       editHabit: function(habit, time) {
-        return $http.put(api + '/habits/' + habit.id + '/update', habit).then( (data)=> {
+        return $http.put(api + '/habits/' + habit.id + '/update', habit).then(function(data) {
           return data;
         });
       },
