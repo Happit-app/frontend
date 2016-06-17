@@ -204,6 +204,11 @@ input {
 
 .oauth-facebook {
   background-color: #3B5998;
+  margin-top: 100px;
+}
+
+.oauth-facebook:active, .oauth-facebook:focus, .oauth-facebook:hover {
+  color: #fff;
 }
 
 .oauth-google {
@@ -216,4 +221,13 @@ input {
 
 .set-tog {
   height:60px;
+}
+
+.happit-logo {
+  width: 200px;
+  margin-top: 120px;
+}
+
+.login-page {
+  background-color: #00BCD4;
 }
