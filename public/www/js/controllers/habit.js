@@ -14,12 +14,20 @@
     this.scheduleArr = [];
 
     this.labels = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    this.data = [3, 5, 10, 7, 1, 20, 12];
     this.colors = ['#00BCD4', '#0091EA', '#CDDC39', '#26A69A', '#2E7D32', '#8BC34A', '#01579B'];
 
     this.service.getHabit($stateParams.id).then(function(data) {
       ctrl.habit = data;
       ctrl.time = ctrl.habit.time;
+      var dates = ctrl.habit.dates;
+      if(dates) {
+        var dayArray = [0, 0, 0, 0, 0, 0, 0];
+        for(var i = 0; i < dates.length; i++) {
+          var index = dates[i].getDay();
+          dayArray[index]++;
+        }
+        ctrl.data = dayArray;
+      }
     }).catch(function(err) {
       console.log(err);
     });
@@ -40,6 +48,7 @@
       var habit_id = ctrl.habit.id;
       ctrl.habit.dates = ctrl.habit.dates || [];
       var habitDates = ctrl.habit.dates;
+      var index = date.getDay();
 
       if (habitDates.length) {
         for (var i = 0; i < habitDates.length; i++) {
@@ -47,6 +56,7 @@
           if (currentDate.getFullYear() === date.getFullYear() && currentDate.getMonth() === date.getMonth() && currentDate.getDate() === date.getDate()) {
             habitDates.splice(i, 1);
             ctrl.rerenderCal();
+            ctrl.data[index]--;
             HabitsServices.undoTask(habit_id, date);
             return;
           }
@@ -55,6 +65,7 @@
 
       habitDates.push(date);
       ctrl.rerenderCal();
+      ctrl.data[index]++;
       HabitsServices.completeTask(habit_id, date);
     };
 
