@@ -115,13 +115,14 @@
 
     this.addHabit = function(habit, time) {
       habit.time = time;
-      habit.user_id = 2;
+      habit.user_id = this.service.getUserID();
 
       // if(habit.notify) {
       //   ctrl.createSchedule(habit);
       // }
 
       HabitsServices.addHabit(habit).then(function() {
+        console.log('habit-controller');
         $state.go('home');
       }).catch(function(err) {
         console.log(err);

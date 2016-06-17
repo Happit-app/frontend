@@ -8,7 +8,7 @@
   function AuthCtrl($cordovaOauth, $http, AuthServices, $location, UserServices) {
 
     var ctrl = this;
-    var fb = { id: '' };
+    var fb = { id: '903453959800466' };
 
 
     ctrl.fbLogin = function() {
@@ -18,8 +18,8 @@
         AuthServices.fb_exc(result.access_token)
         .then(function(profile){
           console.log(profile);
-          UserServices.current(profile.user, profile.token);
-          $location.path('/login')
+          UserServices.current(JSON.stringify(profile.data.user), profile.data.token);
+          $location.path('/')
         })
         .catch(function() {
           $location.path('/');
