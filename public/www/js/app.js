@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('happit', ['ionic', 'ui.router', 'ngCordova', 'ngCordovaOauth', 'ionic-timepicker', 'chartjs', 'ngMaterial', 'materialCalendar'])
+    .module('happit', ['ionic', 'ui.router', 'ngCordova', 'ngCordovaOauth', 'ionic-timepicker', 'chart.js', 'ngMaterial', 'materialCalendar'])
     .config(routeHandler)
     .run(runBlock);
 
@@ -45,7 +45,7 @@
           restricted: true
         })
         .state('edit', {
-          url: '/edit',
+          url: '/edit/:id',
           templateUrl: 'partials/edit.html',
           controller: 'HabitCtrl as ctrl',
           restricted: true
@@ -56,7 +56,7 @@
 
     function runBlock($ionicPlatform, $rootScope, $location, $window) {
       $ionicPlatform.ready(function() {
-        if(window.cordova && window.cordova.plugins.Keyboard) {
+        if(window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
           cordova.plugins.Keyboard.disableScroll(true);
         }

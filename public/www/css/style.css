@@ -2,20 +2,25 @@
 
 .nav-icon {
   font-size: 12pt;
-  margin-left: 6px;
 }
 
 .settings-icon {
   font-size: 14pt;
-  margin-left: 6px;
 }
 
 .navbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .navbar a {
+  color: #fff;
+  padding-left: 10px;
+  padding-right: 16px;
+}
+
+.navbar a:hover, .navbar a:focus, .navbar a:active {
   color: #fff;
 }
 
@@ -112,17 +117,67 @@
   position: relative;
 }
 
+.calendar-container .layout-padding > div:first-child {
+  z-index: 100;
+  position: relative;
+}
+
 .completedDay {
   width: 100%;
   height: 100%;
-  background-color: rgba(49, 187, 104, 0.7);
+  background-color: rgba(49, 187, 104, 0.75);
   top: 0;
   right: 0;
   position: absolute;
 }
 
+.chart-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 /* FORM STYLES */
 
+.time-picker {
+  width: 100%;
+  text-align: left;
+  padding: 5px 16px 5px 15px;
+  background-color: #fff;
+  margin-bottom: -10px;
+}
+
+.enter-time {
+  float: right;
+}
+
+.ionic_timepicker_popup .popup-body .heading {
+  background-color: #00BCD4;
+}
+
+.ionic_timepicker_popup .popup-buttons button {
+  background-color: #00BCD4;
+}
+
+.button-container {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.button-container button:hover, .button-container button:focus, .button-container button:active {
+  color: #fff;
+}
+
+.button-delete {
+  background-color: #999;
+}
+
+.bottom-button {
+  margin-bottom: 30px;
+}
+
+input {
+  text-align: right;
+}
 
 /* LOGIN STYLES */
 

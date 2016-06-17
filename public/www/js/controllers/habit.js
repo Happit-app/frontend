@@ -5,17 +5,29 @@
     .module('happit')
     .controller('HabitCtrl', HabitCtrl);
 
-  HabitCtrl.$inject = ['HabitsServices', 'ionicTimePicker','$state', '$stateParams', '$scope','$cordovaLocalNotification', '$ionicPlatform', '$rootScope'];
+  HabitCtrl.$inject = ['HabitsServices', 'ionicTimePicker','$state', '$stateParams', '$scope','$cordovaLocalNotification', '$ionicPlatform', '$rootScope', '$location'];
 
-  function HabitCtrl(HabitsServices, ionicTimePicker, $state, $stateParams, $scope, $cordovaLocalNotification, $ionicPlatform, $rootScope) {
+  function HabitCtrl(HabitsServices, ionicTimePicker, $state, $stateParams, $scope, $cordovaLocalNotification, $ionicPlatform, $rootScope, $location) {
     var ctrl = this;
     this.time;
     this.service = HabitsServices;
-    this.scheduleArr= [];
+    this.scheduleArr = [];
+
+    this.labels = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    this.colors = ['#536DFE', '#0091EA', '#CDDC39', '#8BC34A', '#2E7D32', '#26A69A', '#01579B'];
 
     this.service.getHabit($stateParams.id).then(function(data) {
-      console.log($stateParams.id)
       ctrl.habit = data;
+      ctrl.time = ctrl.habit.time;
+      var dates = ctrl.habit.dates;
+      if(dates) {
+        var dayArray = [0, 0, 0, 0, 0, 0, 0];
+        for(var i = 0; i < dates.length; i++) {
+          var index = dates[i].getDay();
+          dayArray[index]++;
+        }
+        ctrl.data = dayArray;
+      }
     }).catch(function(err) {
       console.log(err);
     });
@@ -29,12 +41,14 @@
           }
         }
       }
-      return '';
+      return '<div></div>';
     };
 
     this.dayClick = function(date) {
       var habit_id = ctrl.habit.id;
-      var habitDates = ctrl.habit.dates || [];
+      ctrl.habit.dates = ctrl.habit.dates || [];
+      var habitDates = ctrl.habit.dates;
+      var index = date.getDay();
 
       if (habitDates.length) {
         for (var i = 0; i < habitDates.length; i++) {
@@ -42,6 +56,7 @@
           if (currentDate.getFullYear() === date.getFullYear() && currentDate.getMonth() === date.getMonth() && currentDate.getDate() === date.getDate()) {
             habitDates.splice(i, 1);
             ctrl.rerenderCal();
+            ctrl.data[index]--;
             HabitsServices.undoTask(habit_id, date);
             return;
           }
@@ -50,6 +65,13 @@
 
       habitDates.push(date);
       ctrl.rerenderCal();
+      if(ctrl.data) {
+        ctrl.data[index]++;
+      }
+      else {
+        ctrl.data = [0, 0, 0, 0, 0, 0, 0];
+        ctrl.data[index]++;
+      }
       HabitsServices.completeTask(habit_id, date);
     };
 
@@ -57,102 +79,109 @@
       angular.element(document.querySelector('calendar-md')).scope().$$childHead._$$bootstrap();
     };
 
-    this.createSchedule = function(habit) {
-
-      var days = [habit.sun, habit.mon, habit.tue, habit.wed, habit.thu, habit.fri, habit.sat];
-
-      for (var i = 0; i < days.length; i++) {
-
-        if(days[i]) {
-          var hours = habit.time.slice(0,2);
-          var mins = habit.time.substring(5, 2);
-          var amPm;
-
-          if(hours - 12 >= 0) {
-            hours = (hours - 12);
-            amPm = 'pm';
-          } else {
-            amPm = 'am';
-            mins = ':' + mins;
-          }
-
-        var dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-
-        var Day = new Object();
-
-        Day.id = i,
-        Day.title = 'Happit Check-In',
-        Day.text = 'Hi, ' + habit.firstName + '! Did you complete your healthy habit today?',
-        Day.firstAt = dayNames[i] + '_at_' + hours + mins + '_' + amPm,
-        Day.every = 'week',
-        Day.ongoing = true
-
-        ctrl.scheduleArr.push(Day);
-        }
-      }
-      console.log(ctrl.scheduleArr);
-    }
+    // this.createSchedule = function(habit) {
+    //   var days = [habit.sun, habit.mon, habit.tue, habit.wed, habit.thu, habit.fri, habit.sat];
+    //
+    //   for (var i = 0; i < days.length; i++) {
+    //     if(days[i]) {
+    //       var hours = habit.time.slice(0,2);
+    //       var mins = habit.time.substring(5, 2);
+    //       var amPm;
+    //
+    //       if(hours - 12 >= 0) {
+    //         hours = (hours - 12);
+    //         amPm = 'pm';
+    //       } else {
+    //         amPm = 'am';
+    //         mins = ':' + mins;
+    //       }
+    //
+    //     var dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+    //
+    //     var Day = new Object();
+    //
+    //     Day.id = habit.id,
+    //     Day.title = 'Happit Check-In',
+    //     Day.text = 'Hi, ' + habit.firstName + '! Did you complete your healthy habit today?',
+    //     Day.firstAt = dayNames[i] + '_at_' + hours + mins + '_' + amPm,
+    //     Day.every = 'week',
+    //     Day.ongoing = true
+    //
+    //     ctrl.scheduleArr.push(Day);
+    //     }
+    //   }
+    //   ctrl.scheduler();
+    // }
 
     this.addHabit = function(habit, time) {
       habit.time = time;
       habit.user_id = 2;
 
-      if(habit.notify) {
-        ctrl.createSchedule(habit);
-      }
+      // if(habit.notify) {
+      //   ctrl.createSchedule(habit);
+      // }
 
-      HabitsServices.addHabit(habit).then( () => {
+      HabitsServices.addHabit(habit).then(function() {
         $state.go('home');
-      }).catch( (err) => {
+      }).catch(function(err) {
         console.log(err);
       });
     };
 
-    $ionicPlatform.ready( function() {
-      if(ionic.Platform.isWebView) {
-        $scope.MultipleNotifications = function() {
-          $cordovaLocalNotification.schedule(scheduleArr)
-            .then(function(result) {
-              alert('Notifications sent!');
-          });
-        };
-        $rootScope.$on($cordovaLocalNotification.onclick = function (event, notification, json) {
-          $state.go('home');
-        });
-      }
-    });
 
-    this.editHabit = function(habit, time) {
-      habit.time = time;
-      habit.user_id = 2;
+    // $ionicPlatform.ready( function() {
+    //   if(ionic.Platform.isWebView) {
+    //     ctrl.scheduler = function(){
+    //       $cordovaLocalNotification.schedule(ctrl.scheduleArr)
+    //         .then(function(result) {
+    //           alert('Notifications sent!');
+    //       });
+    //     }
+    //     console.log('hi!');
+    //     $rootScope.$on($cordovaLocalNotification.onclick = function (event, notification, json) {
+    //       $state.go('home');
+    //     });
+    //   }
+    // });
 
-      HabitsServices.editHabit(habit, time).then( ()=> {
-        $state.go();
-      }).catch( (err) => {
+    this.editHabit = function(habit) {
+      HabitsServices.editHabit(ctrl.habit, ctrl.habit.time).then( function() {
+        // if(habit.notify) {
+        //   if(scheduleArr.length) {
+        //     for(var j = 0; j < scheduleArr.length; j++) {
+        //       if(scheduleArr[i].id === habit.id) {
+        //         scheduleArr.splice(i, 1);
+        //       }
+        //     }
+        //   }
+        //   ctrl.createSchedule(habit);
+        // }
+        $state.go('home');
+      }).catch( function(err) {
         console.log(err);
       });
     };
 
-    this.deleteHabit = function(habit, time) {
-      HabitsServices.deleteHabit(id).then( () => {
+    this.deleteHabit = function(habit_id) {
+      HabitsServices.deleteHabit(habit_id).then(function() {
         $state.go('home');
-      }).catch( (err) => {
+      }).catch(function(err) {
         console.log(err);
       });
     };
 
     this.completeTask = function(habit) {
-      HabitsServices.completeTask(habit).then( (data)=> {
+      HabitsServices.completeTask(habit).then(function(data) {
         return data;
-      }).catch( (err) => {
+      }).catch(function(err) {
         console.log(err);
       });
     };
 
     this.undoTask = function(id) {
-      HabitsServices.undoTask(id).then( () => {
+      HabitsServices.undoTask(id).then( function() {
         $state.go('habits');
-      }).catch( (err) => {
+      }).catch(function(err) {
         console.log(err);
       });
     };
@@ -161,7 +190,7 @@
       var min;
 
       var ipObj1 = {
-        callback: function (val) {
+        callback: function(val) {
           if (typeof (val) === 'undefined') {
             console.log('Time not selected');
           } else {
@@ -173,8 +202,14 @@
             } else {
                min = selectedTime.getUTCMinutes()
             }
-            ctrl.time = hour + ":" + min;
-            this.time = ctrl.time;
+
+            if (ctrl.habit) {
+              ctrl.habit.time = hour + ":" + min;
+            }
+            else {
+              ctrl.time = hour + ':' + min;
+            }
+            // this.time = ctrl.habit.time || ctrl.time;
           }
         },
         inputTime: 50400,

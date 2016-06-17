@@ -1,10 +1,14 @@
-<ion-header-bar class="bar-stable navbar">
+<ion-header-bar align-title="center" class="bar-stable navbar">
   <h1 class="title">{{ctrl.habit.title}}</h1>
   <a href="/"><i class='icon ion-chevron-left nav-icon'></i></a>
-  <a href="/#/edit"><i class='icon ion-edit settings-icon'></i></a>
+  <a ng-href="/#/edit/{{ctrl.habit.id}}"><i class='icon ion-edit settings-icon'></i></a>
 </ion-header-bar>
 <ion-content>
-  <p>{{ctrl.habit.desc}}</p>
+  <div class="card">
+    <div class="item item-text-wrap">
+      {{ctrl.habit.desc}}
+    </div>
+  </div>
 
   <div class="calendar-container" ng-if="ctrl.habit">
     <calendar-md flex layout layout-fill
@@ -19,6 +23,17 @@
     day-content="ctrl.setDayContent"
     disable-future-selection="true"
     ></calendar-md>
+  </div>
+
+  <div class="card" ng-if="ctrl.data">
+    <div class="item item-divider">
+      Frequency by Day
+    </div>
+    <div class="item item-text-wrap">
+      <canvas id="doughnut" class="chart chart-doughnut"
+        chart-data="ctrl.data" chart-labels="ctrl.labels" chart-colours="ctrl.colors">
+      </canvas>
+    </div>
   </div>
 
 </ion-content>

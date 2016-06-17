@@ -8,7 +8,8 @@
   function AuthCtrl($cordovaOauth, $http, AuthServices, $location, UserServices) {
 
     var ctrl = this;
-    var fb = { id: '903453959800466' };
+    var fb = { id: '' };
+
 
     ctrl.fbLogin = function() {
       $cordovaOauth

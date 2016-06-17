@@ -13,7 +13,7 @@ function HabitsCtrl(HabitsServices) {
   this.month= ctrl.date.getMonth();
   this.day = ctrl.date.getDate();
 
-  this.user_id = 4;
+  this.user_id = 2;
 
   this.service.getAllHabits(ctrl.user_id).then(function(data) {
     data.map(function(habit) {
@@ -31,16 +31,12 @@ function HabitsCtrl(HabitsServices) {
   this.completeTask = function(habit) {
     var habit_id = habit.id;
     var date = ctrl.date;
+    var zoneDate = new Date();
+    zoneDate.setTime(zoneDate.getTime() - zoneDate.getTimezoneOffset()*60*1000);
+    habit.dates = habit.dates || [];
 
-    if (habit.dates) {
-      var habitDates = habit.dates;
-    }
-    else {
-      var habitDates = [];
-    }
-
-    habitDates.push(date);
-    HabitsServices.completeTask(habit_id, date);
+    habit.dates.push(date);
+    HabitsServices.completeTask(habit_id, zoneDate);
     habit.completed = true;
   };
 

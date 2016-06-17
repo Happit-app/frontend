@@ -1,4 +1,4 @@
-<ion-header-bar class="bar-stable navbar">
+<ion-header-bar align-title="center" class="bar-stable navbar">
   <h1 class="title">New Habit</h1>
   <a href="/"><i class='icon ion-chevron-left nav-icon'></i></a>
 </ion-header-bar>
@@ -23,8 +23,8 @@
             </div>
           </label>
         </div>
-        <div class='button' ng-model='habit.time' value='ctrl.time' ng-click='ctrl.openTimePicker()'>
-          <p>Reminder Time:   {{ ctrl.time || "set time here" }}</p>
+        <div class='button time-picker' ng-model='habit.time' value='ctrl.time' ng-click='ctrl.openTimePicker()'>
+          <p>Reminder Time<span class="enter-time">{{ ctrl.time || "set time here" }}</span></p>
         </div>
       </div>
       <ul class="list">
@@ -92,7 +92,9 @@
            </label>
         </li>
       </ul>
-      <button type="submit" class="button button-main">Create Habit</button>
+      <div class="button-container">
+        <button type="submit" class="button button-main button-block bottom-button">Create Habit</button>
+      </div>
     </div>
 
   </form>
