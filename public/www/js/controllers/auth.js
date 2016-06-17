@@ -8,7 +8,7 @@
   function AuthCtrl($cordovaOauth, $http, AuthServices, $location, UserServices) {
 
     var ctrl = this;
-    var fb = { id: '' };
+    var fb = { id: '903453959800466' };
 
 
     ctrl.fbLogin = function() {
@@ -19,7 +19,7 @@
         .then(function(profile){
           console.log(profile);
           UserServices.current(profile.user, profile.token);
-          $location.path('/login')
+          $location.path('/')
         })
         .catch(function() {
           $location.path('/');

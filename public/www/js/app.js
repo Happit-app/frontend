@@ -18,7 +18,7 @@
           url: '/',
           templateUrl: 'partials/home.html',
           controller: 'HabitsCtrl as ctrl',
-          restricted: true, 
+          restricted: true,
         })
         .state('login', {
           url: '/login',
@@ -63,17 +63,9 @@
         if(window.StatusBar) {
           StatusBar.styleDefault();
         }
-      });
 
-      $rootScope.$on('$routeChangeStart', function (event, next, current) {
-        if (next.restricted && !$window.localStorage.getItem("token")) {
-            $location.path('/login');
-        }
-        else if (next.preventWhenLoggedOut && !$window.localStorage.getItem("token")) {
-            $location.path('/login');
-        }
-        else if (next.preventWhenLoggedIn && $window.localStorage.getItem("token")) {
-          $location.path('/home');
+        if (!$window.localStorage.getItem("token")) {
+          $location.path('/login');
         }
 
       });

@@ -7,7 +7,7 @@
 
   function AuthServices($http) {
 
-      var auth_rte = '10.0.2.2:3000/login';
+      var auth_rte = 'https://hapit-app.herokuapp.com/login';
 
       function fb_exc(token) {
         return $http({

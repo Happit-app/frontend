@@ -2,18 +2,17 @@ angular
   .module('happit')
     .controller('HabitsCtrl', HabitsCtrl)
 
-HabitsCtrl.$inject = ['HabitsServices']
+HabitsCtrl.$inject = ['HabitsServices', '$window']
 
-function HabitsCtrl(HabitsServices) {
+function HabitsCtrl(HabitsServices, $window) {
   var ctrl = this;
-
+  this.user_id = $window.localStorage.getItem('user.id');
+  console.log(ctrl.user_id)
   this.service = HabitsServices;
   this.date = new Date();
   this.year = ctrl.date.getFullYear();
   this.month= ctrl.date.getMonth();
   this.day = ctrl.date.getDate();
-
-  this.user_id = 2;
 
   this.service.getAllHabits(ctrl.user_id).then(function(data) {
     data.map(function(habit) {
