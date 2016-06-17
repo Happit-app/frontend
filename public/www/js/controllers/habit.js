@@ -34,7 +34,8 @@
 
     this.dayClick = function(date) {
       var habit_id = ctrl.habit.id;
-      var habitDates = ctrl.habit.dates || [];
+      ctrl.habit.dates = ctrl.habit.dates || [];
+      var habitDates = ctrl.habit.dates;
 
       if (habitDates.length) {
         for (var i = 0; i < habitDates.length; i++) {
@@ -48,8 +49,7 @@
         }
       }
 
-      // habitDates.push(date);
-      ctrl.habit.dates = [date];
+      habitDates.push(date);
       ctrl.rerenderCal();
       HabitsServices.completeTask(habit_id, date);
     };
