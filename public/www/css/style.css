@@ -2,20 +2,25 @@
 
 .nav-icon {
   font-size: 12pt;
-  margin-left: 6px;
 }
 
 .settings-icon {
   font-size: 14pt;
-  margin-left: 6px;
 }
 
 .navbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .navbar a {
+  color: #fff;
+  padding-left: 10px;
+  padding-right: 16px;
+}
+
+.navbar a:hover, .navbar a:focus, .navbar a:active {
   color: #fff;
 }
 

@@ -2,9 +2,9 @@ angular
   .module('happit')
     .controller('UserCtrl', UserCtrl)
 
-UserCtrl.$inject = []
+UserCtrl.$inject = ['UserServices']
 
-function UserCtrl() {
+function UserCtrl(UserServices) {
   var ctrl = this;
 
   this.service = UserServices;
