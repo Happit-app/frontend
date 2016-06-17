@@ -10,22 +10,22 @@ function HabitsServices($http) {
 
     return {
       completeTask: function(habit_id, date) {
-        return $http.post(api + '/habits/' + habit_id + '/success', {date: date}).then( (data)=> {
+        return $http.post(api + '/habits/' + habit_id + '/success', {date: date}).then( function(data) {
           return data;
         });
       },
       undoTask: function(habit_id, date) {
-        return $http.delete(api + '/habits/' + habit_id + '/success/' + date.toISOString()).then( (data) => {
+        return $http.delete(api + '/habits/' + habit_id + '/success/' + date.toISOString()).then( function(data) {
           return data;
         });
       },
       editHabit: function(habit, time) {
-        return $http.put(api + '/habits/:id/update', habit).then( (data)=> {
+        return $http.put(api + '/habits/:id/update', habit).then( function(data) {
           return data;
         });
       },
       addHabit: function(habit) {
-        return $http.post(api + '/habits', habit).then( (data) => {
+        return $http.post(api + '/habits', habit).then( function(data) {
            return data;
         });
       },
@@ -54,7 +54,7 @@ function HabitsServices($http) {
         });
       },
       deleteHabit: function(id) {
-        return $http.delete(api + '/habits/' + id + '/delete').then( (data) => {
+        return $http.delete(api + '/habits/' + id + '/delete').then( function(data) {
           return data;
         });
       }
