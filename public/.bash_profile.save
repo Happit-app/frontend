@@ -1,0 +1,1 @@
+export ANDROID_HOME=$(/devanymoe/Library/Android/sdk/tools/)
